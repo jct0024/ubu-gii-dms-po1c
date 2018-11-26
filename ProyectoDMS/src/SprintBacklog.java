@@ -1,3 +1,4 @@
+import java.util.HashSet;
 
 public class SprintBacklog extends Backlog{
 	
@@ -7,9 +8,14 @@ public class SprintBacklog extends Backlog{
 	 * array que hemos creado antes.
 	 */
 	@Override
-	public void addTarea(int id) {
-		
-		
+	public void addTarea(Tarea t) {
+		// TODO Auto-generated method stub
+		t.setEstado(1);
+		this.tarea.add(t);
 	}
-	
+
+	@Override
+	public HashSet<Tarea> getTarea() {
+		return tarea;
+	}
 }

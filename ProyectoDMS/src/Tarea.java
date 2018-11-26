@@ -17,7 +17,7 @@ public class Tarea {
 	 * @param requisito
 	 */
 	
-	public Tarea (String titulo, int id, String descripcion, int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA) {
+	public Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA) {
 		
 		this.titulo = titulo;
 		this.id = id;
