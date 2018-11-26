@@ -34,4 +34,5 @@ public class MiembroDeEquipo {
 	public void getmiembro () {
 		System.out.println(miembros.values());
 	}
+
 }
