@@ -23,20 +23,39 @@ public class Main {
 		 * Menu didactico para navegar por la aplicación a rellenar
 		 */
 		while(flag!=0) {
+			
 			System.out.println("Elige una opción");
-			System.out.println("1, Añadir Miembro");
-			System.out.println("2, Lista de miembros");
+			System.out.println("1, Miembros");
+			System.out.println("2, Tareas");
 			System.out.println("0, Salir del programa");
 			flag=sc.nextInt();
 			if (flag == 1) {
-				System.out.println("Añadir DNI");
-				int id =sc.nextInt();
-				System.out.println("AñadirNombre");
-				String nom = sc.next();
-				M.addMiembro(id, nom);
-			} else if(flag == 2) {
-				M.getmiembro();
-			}
+				int flag2 = -1;
+				while(flag2!=0){
+					System.out.println("Elige una opción");
+					System.out.println("1: Añadir Miembro");
+					System.out.println("2: Lista de Miembros");
+					System.out.println("3: Eliminar Miembro");
+					System.out.println("0: Volver al menu principal");
+					flag2=sc.nextInt();
+					if(flag2==1) {
+						System.out.println("Añadir DNI");
+						int id =sc.nextInt();
+						System.out.println("AñadirNombre");
+						String nom = sc.next();
+						M.addMiembro(id, nom);
+					} else if(flag2 == 2) {
+						M.getmiembro();
+					} else if (flag2 == 3) {
+						System.out.println("Introduce el Id del miembro a eliminar");
+						int id =sc.nextInt();
+						M.eliminarMiembro(id);
+					}
+				}
+
+			} else if(flag ==1){
+				System.out.println("Hola");
+			} 
 			
 		}
 

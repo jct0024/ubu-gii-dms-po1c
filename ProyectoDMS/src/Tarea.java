@@ -16,6 +16,7 @@ public class Tarea {
 	 * @param requisito
 	 */
 	
+	
 	public Tarea (Requisito requisito) {
 		this.requisito = requisito;
 	}
