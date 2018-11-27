@@ -13,6 +13,6 @@ public abstract class Backlog {
 	 * @param id
 	 */
 	public abstract void addTarea(Tarea t);
-	public abstract HashSet<Tarea> getTarea();
+	public abstract void getTarea();
 
 }

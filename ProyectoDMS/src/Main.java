@@ -16,10 +16,10 @@ public class Main {
 		MiembroDeEquipo M = new MiembroDeEquipo();
 		Requisito R = new Requisito();
 		ProductBacklog bl = new ProductBacklog();
-		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M);
-		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M);
-		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M);
-		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M);
+		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,0);
+		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,1);
+		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
+		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,3);
 		bl.addTarea(a);
 		bl.addTarea(c);
 		bl.addTarea(d);
@@ -83,14 +83,15 @@ public class Main {
 						 * los  atributos secundarios
 						 */
 						
-					} else if(flag2 == 2) {				Tarea t;
-					Iterator it = bl.getTarea().iterator();
-					while(it.hasNext()) {
-						t = (Tarea)it.next();
+					} else if(flag2 == 2) {	
+						System.out.println("Que tareas deseas mostrar:");
+						flag2=sc.nextInt();
+						/**
+						 * Aqui hay que hacer un menu entre: todas, las del sprintbacklog o las de productBacklog, 
+						 * en el iterador hay que hacer un if, filtrando seguún su estado.
+						 */
+						bl.getTarea();
 
-						System.out.println(t.getTitulo());
-						System.out.println(t.getId());
-					}
 					} else if (flag2 == 3) {
 						System.out.println("Introduce el Id del miembro a eliminar");
 						int id =sc.nextInt();

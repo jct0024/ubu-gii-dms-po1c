@@ -17,15 +17,16 @@ public class Tarea {
 	 * @param requisito
 	 */
 	
-	public Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA) {
+	public Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA, int estado) {
 		
 		this.titulo = titulo;
 		this.id = id;
-		this.descripcion = descripcion;
+		this.descripcion = "Sin descripción";
 		this.coste = coste;
 		this.beneficio = beneficio;
 		this.requisito = requisito;
 		this.asignadoA = asignadoA;
+		this.estado = estado;
 	}
 	
 	public void asignarMiembro(MiembroDeEquipo MDE) {

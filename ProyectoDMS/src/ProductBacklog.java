@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class ProductBacklog extends Backlog{
 
@@ -11,8 +12,14 @@ public class ProductBacklog extends Backlog{
 	}
 
 	@Override
-	public HashSet<Tarea> getTarea() {
-		return tarea;
+	public void getTarea() {
+		Iterator it = tarea.iterator();
+		while(it.hasNext()) {
+			Tarea t = (Tarea)it.next();
+
+			System.out.println(t.getTitulo());
+			System.out.println(t.getId());
+		}
 	}
 
 }
