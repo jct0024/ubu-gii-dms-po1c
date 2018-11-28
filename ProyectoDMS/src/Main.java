@@ -84,8 +84,28 @@ public class Main {
 						 * y mas tarde instanciar un objeto tarea con ests atributos.
 						 * Hay que tener en cuenta que tambien se debería poder añadir una tarea para añadir 
 						 * los  atributos secundarios
+						 * Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA, int estado)
 						 */
-						
+
+						System.out.println("Añadir Titulo");
+						String nom = sc.next();
+						System.out.println("Añadir Identificador de tarea");
+						int id =sc.nextInt();
+						System.out.println("Añadir Coste");
+						int cost =sc.nextInt();
+						System.out.println("Añadir Beneficio");
+						int ben =sc.nextInt();
+						System.out.println("Añadir Estado (NUMERO) "
+								+ "0: Pendiente"
+								+ "1: En proceso"
+								+ "2: Validación"
+								+ "3: Terminado");
+						int est =sc.nextInt();
+						if (est==0) {
+							bl.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+						} else {
+							sl.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+						}
 					} else if(flag2 == 2) {	
 						System.out.println("Que tareas deseas mostrar:");
 						System.out.println("1: Tareas en Product Backlog");

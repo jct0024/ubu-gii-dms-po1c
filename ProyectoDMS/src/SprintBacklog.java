@@ -22,7 +22,7 @@ public class SprintBacklog extends Backlog{
 		Iterator<Tarea> it = tarea.iterator();
 		while(it.hasNext()) {
 			Tarea t = (Tarea)it.next();
-			if (t.getEstado() != 0) {
+			if (t.getEstado() > 0) {
 				System.out.println("Titulo: " + t.getTitulo());
 				System.out.println("Identificador: "+t.getId());
 				System.out.println("Estado: "+estados[t.getEstado()]);
