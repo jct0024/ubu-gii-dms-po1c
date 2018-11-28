@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,20 +11,22 @@ public class Main {
 	 * diferentes opciones como se ve en el ejemplo de añadir y ver miembro.
 	 * Además queda pediente de crear todas las tareas para comprobar cada ejemplo.
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		//Registro de tareas
 		MiembroDeEquipo M = new MiembroDeEquipo();
 		Requisito R = new Requisito();
 		ProductBacklog bl = new ProductBacklog();
+		SprintBacklog sl = new SprintBacklog();
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,0);
 		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,1);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
 		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,3);
 		bl.addTarea(a);
-		bl.addTarea(c);
-		bl.addTarea(d);
-		bl.addTarea(b);
+		sl.addTarea(c);
+		sl.addTarea(d);
+		sl.addTarea(b);
 		List<String> Estados = new ArrayList<String>();
 		Estados.add("Pendiente");
 		Estados.add("En Proceso");
@@ -85,11 +88,35 @@ public class Main {
 						
 					} else if(flag2 == 2) {	
 						System.out.println("Que tareas deseas mostrar:");
-						flag2=sc.nextInt();
+						System.out.println("1: Tareas en Product Backlog");
+						System.out.println("2: Tareas en SprintBacklog");
+						System.out.println("3: Todas las tareas");
+						System.out.println("0: Volver al menu principal");
+						//Añadir while para que se repita todo el rato el menu
+						int tipo=sc.nextInt();
 						/**
 						 * Aqui hay que hacer un menu entre: todas, las del sprintbacklog o las de productBacklog, 
 						 * en el iterador hay que hacer un if, filtrando seguún su estado.
-						 */
+						 */ 
+						switch (tipo){
+							case 0:
+								System.out.println("Aqui seria volver al menu anterior");
+								break;
+							case 1:
+								bl.getTarea();
+								break;
+							case 2:
+								sl.getTarea();
+								break;
+							case 3:
+									Iterator<Tarea> it = sl.tarea.iterator();
+									while(it.hasNext()) {
+										Tarea t = (Tarea)it.next();
+											System.out.println("Titulo: " + t.getTitulo());
+											System.out.println("Identificador: "+t.getId());
+										}
+							}
+							
 						bl.getTarea();
 
 					} else if (flag2 == 3) {

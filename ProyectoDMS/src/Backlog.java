@@ -1,9 +1,8 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.HashSet;
 
 public abstract class Backlog {
-	private static String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
+	protected static String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 	protected HashSet<Tarea> tarea= new HashSet<Tarea>();
 	
 	/**
@@ -13,6 +12,6 @@ public abstract class Backlog {
 	 * @param id
 	 */
 	public abstract void addTarea(Tarea t);
-	public abstract void getTarea();
+	public abstract void getTarea() throws IOException;
 
 }
