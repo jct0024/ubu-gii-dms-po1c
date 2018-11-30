@@ -7,10 +7,12 @@ public class ProductBacklog extends Backlog{
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	
+	/**
+	 * Crea una tarea y es guardad en un array comun de todos los backlog, 
+	 * en el cual se encuentran todas las tareas
+	 */
 	@Override
 	public void addTarea(Tarea t) {
-		// TODO Auto-generated method stub
 		t.setEstado(0);
 		this.tarea.add(t);
 	}

@@ -19,19 +19,14 @@ public class Main {
 		Requisito R = new Requisito();
 		ProductBacklog bl = new ProductBacklog();
 		SprintBacklog sl = new SprintBacklog();
-		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,0);
-		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,1);
+		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
+		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
-		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,3);
-		bl.addTarea(a);
+		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);
+		sl.addTarea(a);
 		sl.addTarea(c);
-		sl.addTarea(d);
+		bl.addTarea(d);
 		sl.addTarea(b);
-		List<String> Estados = new ArrayList<String>();
-		Estados.add("Pendiente");
-		Estados.add("En Proceso");
-		Estados.add("Validación");
-		Estados.add("Finalizado");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		int flag=10000;
@@ -41,9 +36,9 @@ public class Main {
 		while(flag!=0) {
 			
 			System.out.println("Elige una opción");
-			System.out.println("1, Miembros");
-			System.out.println("2, Tareas");
-			System.out.println("0, Salir del programa");
+			System.out.println("1: Miembros");
+			System.out.println("2: Tareas");
+			System.out.println("0: Salir del programa");
 			flag=sc.nextInt();
 			int flag2 = -1;
 			if (flag == 1) {
@@ -57,7 +52,7 @@ public class Main {
 					if(flag2==1) {
 						System.out.println("Añadir DNI");
 						int id =sc.nextInt();
-						System.out.println("AñadirNombre");
+						System.out.println("Añadir Nombre");
 						String nom = sc.next();
 						M.addMiembro(id, nom);
 					} else if(flag2 == 2) {
@@ -74,7 +69,8 @@ public class Main {
 					System.out.println("Elige una opción");
 					System.out.println("1: Añadir Tarea");
 					System.out.println("2: Lista de Tareas");
-					System.out.println("3: Eliminar Tarea");
+					System.out.println("3: Modificar tarea");
+					System.out.println("4: Eliminar Tarea");
 					System.out.println("0: Volver al menu principal");
 					flag2=sc.nextInt();
 					if(flag2==1) {
@@ -91,15 +87,19 @@ public class Main {
 						String nom = sc.next();
 						System.out.println("Añadir Identificador de tarea");
 						int id =sc.nextInt();
+						while(bl.existeTarea(id)) {
+							System.out.println("Tarea existente, Pruebe otro identificador:");
+							id =sc.nextInt();
+						}
 						System.out.println("Añadir Coste");
 						int cost =sc.nextInt();
 						System.out.println("Añadir Beneficio");
 						int ben =sc.nextInt();
 						System.out.println("Añadir Estado (NUMERO) "
-								+ "0: Pendiente"
-								+ "1: En proceso"
-								+ "2: Validación"
-								+ "3: Terminado");
+								+ "0: Pendiente "
+								+ "1: En proceso "
+								+ "2: Validación "
+								+ "3: Terminado ");
 						int est =sc.nextInt();
 						if (est==0) {
 							bl.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
@@ -120,7 +120,6 @@ public class Main {
 						 */ 
 						switch (tipo){
 							case 0:
-								System.out.println("Aqui seria volver al menu anterior");
 								break;
 							case 1:
 								bl.getTarea();
@@ -129,20 +128,18 @@ public class Main {
 								sl.getTarea();
 								break;
 							case 3:
-									Iterator<Tarea> it = sl.tarea.iterator();
-									while(it.hasNext()) {
-										Tarea t = (Tarea)it.next();
-											System.out.println("Titulo: " + t.getTitulo());
-											System.out.println("Identificador: "+t.getId());
-										}
+								bl.getTarea();
+								sl.getTarea();
+								break;
 							}
-							
-						bl.getTarea();
-
 					} else if (flag2 == 3) {
-						System.out.println("Introduce el Id del miembro a eliminar");
+						System.out.println("Introduce el Id de la tarea a eliminar");
 						int id =sc.nextInt();
 						M.eliminarMiembro(id);
+					} else if (flag2==4) {
+						System.out.println("Introduce el Id de la tarea a eliminar");
+						int id =sc.nextInt();
+						M.eliminarMiembro(id);					
 					}
 				}
 
