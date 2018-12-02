@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Main {
@@ -12,9 +14,12 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 		//Registro de tareas
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		AdministradorDeTarea at = new AdministradorDeTarea();
 		MiembroDeEquipo M = new MiembroDeEquipo();
 		Requisito R = new Requisito();
+		String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
 		Tarea b = new Tarea ("Dise�ar", 1,  20, 100,R, M,2);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
@@ -106,6 +111,7 @@ public class Main {
 						System.out.println("2: Tareas en SprintBacklog");
 						System.out.println("3: Todas las tareas");
 						System.out.println("0: Volver al menu principal");
+						
 						//A�adir while para que se repita todo el rato el menu
 						int tipo=sc.nextInt();
 						/**
@@ -117,12 +123,18 @@ public class Main {
 								break;
 							case 1:
 								at.getTarea();
+								@SuppressWarnings("unused")
+								String sTexto4 = br.readLine();
 								break;
 							case 2:
 								at.getTarea();
+								@SuppressWarnings("unused")
+								String sTexto0 = br.readLine();
 								break;
 							case 3:
 								at.getTarea();
+								@SuppressWarnings("unused")
+								String sTexto1 = br.readLine();
 								break;
 							}
 					} else if (flag2 == 3) {
