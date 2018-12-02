@@ -5,18 +5,27 @@ import java.io.InputStreamReader;
 
 public class ProductBacklog extends Backlog{
 
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	/**
 	 * Crea una tarea y es guardad en un array comun de todos los backlog, 
 	 * en el cual se encuentran todas las tareas
 	 */
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+	/*
 	@Override
 	public void addTarea(Tarea t) {
 		t.setEstado(0);
 		this.tarea.add(t);
 	}
 
+=======
+/*
+>>>>>>> Stashed changes
+=======
+/*
+>>>>>>> Stashed changes
 	@Override
 	public void getTarea() throws IOException {
 		Iterator<Tarea> it = tarea.iterator();
@@ -31,5 +40,15 @@ public class ProductBacklog extends Backlog{
 			}
 		}
 	}
-
+<<<<<<< Updated upstream
+*/
 }
+=======
+
+*/
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
+}
+>>>>>>> Stashed changes

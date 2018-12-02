@@ -7,22 +7,37 @@ public abstract class Backlog {
 	protected HashSet<Tarea> tarea= new HashSet<Tarea>();
 	
 	/**
-	 *
-	 * Aqui añadiriamos la tarea, pues en cuanto se crea una tarea va a ir a un 
-	 * tipo de baclog, con eso crearimos los metodos y pasariamos los atributos de cada backlog
+	 * 
 	 * @param id
+	 * @return
 	 */
+<<<<<<< Updated upstream
+	/*
 	public abstract void addTarea(Tarea t);
 	public abstract void getTarea() throws IOException;
+	*/
+=======
 	public  boolean existeTarea(int id) {
-		Iterator<Tarea> it = tarea.iterator();
-		while(it.hasNext()) {
-			Tarea t = (Tarea)it.next();
-			System.out.println("Este es el id:"+t.getId());
-			if (t.getId() == id) {
+/*		Iterator<Tarea> it = tarea.iterator();
+			while(it.hasNext()) {
+				Tarea t = it.next();
+				System.out.println("Este es el nombre:"+t.getTitulo());
+				System.out.println("Este es el id:"+t.id);
+				if (t.id == id) {
+				return true;
+			}
+		}
+		return false;
+		*/
+		for(Tarea t: tarea) {
+			System.out.println("Este es el nombre:"+t.getTitulo());
+			System.out.println("Este es el id:"+t.id);
+			if(t.id == id) {
+
 				return true;
 			}
 		}
 		return false;
 	}
+>>>>>>> Stashed changes
 }

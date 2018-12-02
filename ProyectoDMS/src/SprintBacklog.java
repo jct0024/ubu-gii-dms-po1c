@@ -10,11 +10,19 @@ public class SprintBacklog extends Backlog{
 	 * a aprtir de aqui modificariamos su estado con un indice, en base al
 	 * array que hemos creado antes.
 	 */
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+/*	@Override
+=======
+=======
+>>>>>>> Stashed changes
+	/*
 	@Override
+>>>>>>> Stashed changes
 	public void addTarea(Tarea t) {
 		// TODO Auto-generated method stub
 		t.setEstado(1);
-		this.tarea.add(t);
+		tarea.add(t);
 	}
 
 	@Override
@@ -31,5 +39,13 @@ public class SprintBacklog extends Backlog{
 			}
 		}
 	}
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+*/
+=======
+=======
+>>>>>>> Stashed changes
+	*/
 
+>>>>>>> Stashed changes
 }

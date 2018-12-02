@@ -1,7 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -15,18 +12,49 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 		//Registro de tareas
+		AdministradorDeTarea at = new AdministradorDeTarea();
 		MiembroDeEquipo M = new MiembroDeEquipo();
 		Requisito R = new Requisito();
-		ProductBacklog bl = new ProductBacklog();
-		SprintBacklog sl = new SprintBacklog();
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
 		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
 		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);
-		sl.addTarea(a);
-		sl.addTarea(c);
-		bl.addTarea(d);
-		sl.addTarea(b);
+		at.addTarea(a);
+		at.addTarea(c);
+		at.addTarea(d);
+		at.addTarea(b);
+=======
+		ProductBacklog bl = new ProductBacklog();
+		SprintBacklog sl = new SprintBacklog();
+		Tarea administradorTarea = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
+		administradorTarea.addTarea(new Tarea ("Desarrollar", 0,  20, 100,R, M,3));
+		administradorTarea.addTarea(new Tarea ("Diseñar", 1,  20, 100,R, M,2));
+		administradorTarea.addTarea(new Tarea ("Procesar", 2,  20, 100,R, M,1));
+		administradorTarea.addTarea(new Tarea ("Revisar fallos", 3,  20, 100,R, M,0));
+		/*Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
+		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
+		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
+		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);*/
+
+
+>>>>>>> Stashed changes
+=======
+		ProductBacklog bl = new ProductBacklog();
+		SprintBacklog sl = new SprintBacklog();
+		Tarea administradorTarea = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
+		administradorTarea.addTarea(new Tarea ("Desarrollar", 0,  20, 100,R, M,3));
+		administradorTarea.addTarea(new Tarea ("Diseñar", 1,  20, 100,R, M,2));
+		administradorTarea.addTarea(new Tarea ("Procesar", 2,  20, 100,R, M,1));
+		administradorTarea.addTarea(new Tarea ("Revisar fallos", 3,  20, 100,R, M,0));
+		/*Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
+		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
+		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
+		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);*/
+
+
+>>>>>>> Stashed changes
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		int flag=10000;
@@ -87,7 +115,7 @@ public class Main {
 						String nom = sc.next();
 						System.out.println("Añadir Identificador de tarea");
 						int id =sc.nextInt();
-						while(bl.existeTarea(id)) {
+						while(at.existeTarea(id)) {
 							System.out.println("Tarea existente, Pruebe otro identificador:");
 							id =sc.nextInt();
 						}
@@ -102,9 +130,21 @@ public class Main {
 								+ "3: Terminado ");
 						int est =sc.nextInt();
 						if (est==0) {
-							bl.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+							at.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
 						} else {
-							sl.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+							at.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+=======
+							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+						} else {
+							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+>>>>>>> Stashed changes
+=======
+							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+						} else {
+							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+>>>>>>> Stashed changes
 						}
 					} else if(flag2 == 2) {	
 						System.out.println("Que tareas deseas mostrar:");
@@ -122,14 +162,30 @@ public class Main {
 							case 0:
 								break;
 							case 1:
-								bl.getTarea();
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+								at.getTarea();
 								break;
 							case 2:
-								sl.getTarea();
+								at.getTarea();
 								break;
 							case 3:
-								bl.getTarea();
-								sl.getTarea();
+								at.getTarea();
+							
+=======
+=======
+>>>>>>> Stashed changes
+								administradorTarea.getTarea();
+								break;
+							case 2:
+								administradorTarea.getTarea();
+								break;
+							case 3:
+								administradorTarea.getTarea();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 								break;
 							}
 					} else if (flag2 == 3) {
