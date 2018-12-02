@@ -16,7 +16,6 @@ public class AdministradorDeTarea {
 		Iterator<Tarea> it = tarea.iterator();
 		while(it.hasNext()) {
 			Tarea t = (Tarea)it.next();
-			System.out.println("Este es el id:"+t.getId());
 			if (t.getId() == id) {
 				return true;
 			}

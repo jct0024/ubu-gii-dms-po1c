@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class Main {
 
 	/**
-	 * El main tendrá el menu necesarios y los atributos globales, para modificar y navegar por las
-	 * diferentes opciones como se ve en el ejemplo de añadir y ver miembro.
-	 * Además queda pediente de crear todas las tareas para comprobar cada ejemplo.
+	 * El main tendrï¿½ el menu necesarios y los atributos globales, para modificar y navegar por las
+	 * diferentes opciones como se ve en el ejemplo de aï¿½adir y ver miembro.
+	 * Ademï¿½s queda pediente de crear todas las tareas para comprobar cada ejemplo.
 	 * @param args
 	 * @throws IOException 
 	 */
@@ -15,55 +15,23 @@ public class Main {
 		AdministradorDeTarea at = new AdministradorDeTarea();
 		MiembroDeEquipo M = new MiembroDeEquipo();
 		Requisito R = new Requisito();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
-		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
+		Tarea b = new Tarea ("Diseï¿½ar", 1,  20, 100,R, M,2);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
 		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);
 		at.addTarea(a);
 		at.addTarea(c);
 		at.addTarea(d);
 		at.addTarea(b);
-=======
-		ProductBacklog bl = new ProductBacklog();
-		SprintBacklog sl = new SprintBacklog();
-		Tarea administradorTarea = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
-		administradorTarea.addTarea(new Tarea ("Desarrollar", 0,  20, 100,R, M,3));
-		administradorTarea.addTarea(new Tarea ("Diseñar", 1,  20, 100,R, M,2));
-		administradorTarea.addTarea(new Tarea ("Procesar", 2,  20, 100,R, M,1));
-		administradorTarea.addTarea(new Tarea ("Revisar fallos", 3,  20, 100,R, M,0));
-		/*Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
-		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
-		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
-		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);*/
-
-
->>>>>>> Stashed changes
-=======
-		ProductBacklog bl = new ProductBacklog();
-		SprintBacklog sl = new SprintBacklog();
-		Tarea administradorTarea = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
-		administradorTarea.addTarea(new Tarea ("Desarrollar", 0,  20, 100,R, M,3));
-		administradorTarea.addTarea(new Tarea ("Diseñar", 1,  20, 100,R, M,2));
-		administradorTarea.addTarea(new Tarea ("Procesar", 2,  20, 100,R, M,1));
-		administradorTarea.addTarea(new Tarea ("Revisar fallos", 3,  20, 100,R, M,0));
-		/*Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
-		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
-		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
-		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);*/
-
-
->>>>>>> Stashed changes
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		int flag=10000;
 		/**
-		 * Menu didactico para navegar por la aplicación a rellenar
+		 * Menu didactico para navegar por la aplicaciï¿½n a rellenar
 		 */
 		while(flag!=0) {
 			
-			System.out.println("Elige una opción");
+			System.out.println("Elige una opciï¿½n");
 			System.out.println("1: Miembros");
 			System.out.println("2: Tareas");
 			System.out.println("0: Salir del programa");
@@ -71,16 +39,16 @@ public class Main {
 			int flag2 = -1;
 			if (flag == 1) {
 				while(flag2!=0){
-					System.out.println("Elige una opción");
-					System.out.println("1: Añadir Miembro");
+					System.out.println("Elige una opciï¿½n");
+					System.out.println("1: Aï¿½adir Miembro");
 					System.out.println("2: Lista de Miembros");
 					System.out.println("3: Eliminar Miembro");
 					System.out.println("0: Volver al menu principal");
 					flag2=sc.nextInt();
 					if(flag2==1) {
-						System.out.println("Añadir DNI");
+						System.out.println("Aï¿½adir DNI");
 						int id =sc.nextInt();
-						System.out.println("Añadir Nombre");
+						System.out.println("Aï¿½adir Nombre");
 						String nom = sc.next();
 						M.addMiembro(id, nom);
 					} else if(flag2 == 2) {
@@ -94,8 +62,8 @@ public class Main {
 
 			} else if(flag ==2){
 				while(flag2!=0){
-					System.out.println("Elige una opción");
-					System.out.println("1: Añadir Tarea");
+					System.out.println("Elige una opciï¿½n");
+					System.out.println("1: Aï¿½adir Tarea");
 					System.out.println("2: Lista de Tareas");
 					System.out.println("3: Modificar tarea");
 					System.out.println("4: Eliminar Tarea");
@@ -103,48 +71,34 @@ public class Main {
 					flag2=sc.nextInt();
 					if(flag2==1) {
 						/**
-						 * Añadir Tarea, habrá que elegir,  que estado tiene.
+						 * Aï¿½adir Tarea, habrï¿½ que elegir,  que estado tiene.
 						 * Hay que hacer una serie de scaners para coger todos atribuos que tiene una tarea
 						 * y mas tarde instanciar un objeto tarea con ests atributos.
-						 * Hay que tener en cuenta que tambien se debería poder añadir una tarea para añadir 
+						 * Hay que tener en cuenta que tambien se deberï¿½a poder aï¿½adir una tarea para aï¿½adir 
 						 * los  atributos secundarios
 						 * Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA, int estado)
 						 */
 
-						System.out.println("Añadir Titulo");
+						System.out.println("Aï¿½adir Titulo");
 						String nom = sc.next();
-						System.out.println("Añadir Identificador de tarea");
+						System.out.println("Aï¿½adir Identificador de tarea");
 						int id =sc.nextInt();
 						while(at.existeTarea(id)) {
 							System.out.println("Tarea existente, Pruebe otro identificador:");
 							id =sc.nextInt();
 						}
-						System.out.println("Añadir Coste");
+						System.out.println("Aï¿½adir Coste");
 						int cost =sc.nextInt();
-						System.out.println("Añadir Beneficio");
+						System.out.println("Aï¿½adir Beneficio");
 						int ben =sc.nextInt();
-						System.out.println("Añadir Estado (NUMERO) "
+						System.out.println("Aï¿½adir Estado (NUMERO) "
 								+ "0: Pendiente "
 								+ "1: En proceso "
-								+ "2: Validación "
+								+ "2: Validaciï¿½n "
 								+ "3: Terminado ");
 						int est =sc.nextInt();
 						if (est==0) {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 							at.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
-						} else {
-							at.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
-=======
-							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
-						} else {
-							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
->>>>>>> Stashed changes
-=======
-							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
-						} else {
-							administradorTarea.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
->>>>>>> Stashed changes
 						}
 					} else if(flag2 == 2) {	
 						System.out.println("Que tareas deseas mostrar:");
@@ -152,18 +106,16 @@ public class Main {
 						System.out.println("2: Tareas en SprintBacklog");
 						System.out.println("3: Todas las tareas");
 						System.out.println("0: Volver al menu principal");
-						//Añadir while para que se repita todo el rato el menu
+						//Aï¿½adir while para que se repita todo el rato el menu
 						int tipo=sc.nextInt();
 						/**
 						 * Aqui hay que hacer un menu entre: todas, las del sprintbacklog o las de productBacklog, 
-						 * en el iterador hay que hacer un if, filtrando seguún su estado.
+						 * en el iterador hay que hacer un if, filtrando seguï¿½n su estado.
 						 */ 
 						switch (tipo){
 							case 0:
 								break;
 							case 1:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 								at.getTarea();
 								break;
 							case 2:
@@ -171,21 +123,6 @@ public class Main {
 								break;
 							case 3:
 								at.getTarea();
-							
-=======
-=======
->>>>>>> Stashed changes
-								administradorTarea.getTarea();
-								break;
-							case 2:
-								administradorTarea.getTarea();
-								break;
-							case 3:
-								administradorTarea.getTarea();
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 								break;
 							}
 					} else if (flag2 == 3) {
@@ -197,13 +134,11 @@ public class Main {
 						int id =sc.nextInt();
 						M.eliminarMiembro(id);					
 					}
-				}
-
+				 }
+			}
 			} 
-			
-		}
 
-		System.out.println("Proeso Finalizado");	
-		
+		System.out.println("Proceso Finalizado");	
 	}
+		
 }
