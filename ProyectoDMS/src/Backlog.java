@@ -12,17 +12,8 @@ public abstract class Backlog {
 	 * tipo de baclog, con eso crearimos los metodos y pasariamos los atributos de cada backlog
 	 * @param id
 	 */
+	/*
 	public abstract void addTarea(Tarea t);
 	public abstract void getTarea() throws IOException;
-	public  boolean existeTarea(int id) {
-		Iterator<Tarea> it = tarea.iterator();
-		while(it.hasNext()) {
-			Tarea t = (Tarea)it.next();
-			System.out.println("Este es el id:"+t.getId());
-			if (t.getId() == id) {
-				return true;
-			}
-		}
-		return false;
-	}
+	*/
 }

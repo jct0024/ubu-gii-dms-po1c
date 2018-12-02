@@ -10,7 +10,7 @@ public class SprintBacklog extends Backlog{
 	 * a aprtir de aqui modificariamos su estado con un indice, en base al
 	 * array que hemos creado antes.
 	 */
-	@Override
+/*	@Override
 	public void addTarea(Tarea t) {
 		// TODO Auto-generated method stub
 		t.setEstado(1);
@@ -31,5 +31,5 @@ public class SprintBacklog extends Backlog{
 			}
 		}
 	}
-
+*/
 }
