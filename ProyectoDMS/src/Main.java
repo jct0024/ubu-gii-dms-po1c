@@ -84,9 +84,9 @@ public class Main {
 						 * Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA, int estado)
 						 */
 
-						System.out.println("Aï¿½adir Titulo");
+						System.out.println("Añadir Titulo");
 						String nom = sc.next();
-						System.out.println("Aï¿½adir Identificador de tarea");
+						System.out.println("Añadir Identificador de tarea");
 						int id =sc.nextInt();
 						while(at.existeTarea(id)) {
 							System.out.println("Tarea existente, Pruebe otro identificador:");
@@ -122,11 +122,19 @@ public class Main {
 							case 0:
 								break;
 							case 1:
+								/**
+								 * Ha modificar para que te muestre solo
+								 * los de estado = 0.
+								 */
 								at.getTarea();
 								@SuppressWarnings("unused")
 								String sTexto4 = br.readLine();
 								break;
 							case 2:
+								/**
+								 * Ha modificar para que te muestre solo 
+								 * los de estado != 0.
+								 */
 								at.getTarea();
 								@SuppressWarnings("unused")
 								String sTexto0 = br.readLine();
@@ -138,22 +146,43 @@ public class Main {
 								break;
 							}
 					} else if (flag2 == 3) {
-						System.out.println("Introduce el Id de la tarea a eliminar");
-						int id =sc.nextInt();
-						M.eliminarMiembro(id);
-					} else if (flag2==4) {
 						/**
 						 * Para modificar tarea podriamos usar un patron OBSERVADOR, debido a que si cambia el estado de la tarea, 
 						 * tambien debería cambiar de ProductBacklog a SprintBacklog, estos tendras listas de como ellos funcionan,
 						 * y deberan ser actualizadas cada vez que se cambie una tarea
 						 */
-						System.out.println("Introduce el Id de la tarea a Modificar");
+						System.out.println("Aï¿½adir Titulo");
+						String nom = sc.next();
+						System.out.println("Aï¿½adir Identificador de tarea");
 						int id =sc.nextInt();
-						M.eliminarMiembro(id);					
+						while(at.existeTarea(id)) {
+							System.out.println("Tarea existente, Pruebe otro identificador:");
+							id =sc.nextInt();
+						}
+						System.out.println("Aï¿½adir Coste");
+						int cost =sc.nextInt();
+						System.out.println("Aï¿½adir Beneficio");
+						int ben =sc.nextInt();
+						System.out.println("Aï¿½adir Estado (NUMERO) "
+								+ "0: Pendiente "
+								+ "1: En proceso "
+								+ "2: Validaciï¿½n "
+								+ "3: Terminado ");
+						int est =sc.nextInt();
+					} else if (flag2==4) {
+
+
+						System.out.println("Lista de las tareas existentes:");
+						at.getTarea();
+						System.out.println("Introduce el Id de la tarea a eliminar");
+						int id =sc.nextInt();
+						if(at.existeTarea(id)) {
+							at.RemoveTarea(id);				
 					}
 				 }
 			}
-			} 
+			}
+		} 
 
 		System.out.println("Proceso Finalizado");	
 	}

@@ -1,6 +1,7 @@
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class AdministradorDeTarea {
 	/**
@@ -11,6 +12,7 @@ public class AdministradorDeTarea {
 	private HashSet<Tarea> tarea= new HashSet<Tarea>();
 	private String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 	private static AdministradorDeTarea miAdministrador;
+	private Scanner sc = new Scanner(System.in);
 	/**
 	 * Constructor privado, solo se quiere una instancia de este
 	 */
@@ -35,6 +37,19 @@ public class AdministradorDeTarea {
 	  */
 	public void addTarea(Tarea t) {
 		this.tarea.add(t);
+	}
+	public void RemoveTarea(int id) {
+		Iterator<Tarea> it = tarea.iterator();
+		while(it.hasNext()) {
+			Tarea t = (Tarea)it.next();
+			if (t.getId() == id) {
+				System.out.println("Seguro de que desea eliminar "+t.getTitulo() +"(S/N)");
+				String resp = sc.next();
+				if (resp != "N" || resp != "n") {
+					this.tarea.remove(t);
+				}
+			} 
+		}
 	}
 	/**
 	 * Comprueba a través del identificador si la tarea buscada existe.
