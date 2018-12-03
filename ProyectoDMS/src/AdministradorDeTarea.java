@@ -38,19 +38,23 @@ public class AdministradorDeTarea {
 	public void addTarea(Tarea t) {
 		this.tarea.add(t);
 	}
-	public void RemoveTarea(int id) {
+	public Tarea BuscarTarea(int id) {
 		Iterator<Tarea> it = tarea.iterator();
 		while(it.hasNext()) {
 			Tarea t = (Tarea)it.next();
 			if (t.getId() == id) {
+				return t;
+				}
+			}
+		return null;
+		}
+	public void RemoveTarea(Tarea t) {
 				System.out.println("Seguro de que desea eliminar "+t.getTitulo() +"(S/N)");
 				String resp = sc.next();
 				if (resp != "N" || resp != "n") {
 					this.tarea.remove(t);
 				}
 			} 
-		}
-	}
 	/**
 	 * Comprueba a través del identificador si la tarea buscada existe.
 	 * @param id
