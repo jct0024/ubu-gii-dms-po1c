@@ -16,10 +16,10 @@ public class Main {
 		//Registro de tareas
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		AdministradorDeTarea at = new AdministradorDeTarea();
+		//LLamamos al singlenton
+		AdministradorDeTarea at = AdministradorDeTarea.getAdministrador();
 		MiembroDeEquipo M = new MiembroDeEquipo();
 		Requisito R = new Requisito();
-		String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
 		Tarea b = new Tarea ("Dise�ar", 1,  20, 100,R, M,2);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
