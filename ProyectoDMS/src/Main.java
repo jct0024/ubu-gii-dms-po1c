@@ -13,15 +13,14 @@ public class Main {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		//Registro de tareas
-
+		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
 		AdministradorDeTarea at = AdministradorDeTarea.getAdministrador();
 		MiembroDeEquipo M = new MiembroDeEquipo();
 		Requisito R = new Requisito();
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
-		Tarea b = new Tarea ("Diseï¿½ar", 1,  20, 100,R, M,2);
+		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
 		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);
 		at.addTarea(a);
@@ -51,9 +50,9 @@ public class Main {
 					System.out.println("0: Volver al menu principal");
 					flag2=sc.nextInt();
 					if(flag2==1) {
-						System.out.println("Aï¿½adir DNI");
+						System.out.println("Añadir DNI");
 						int id =sc.nextInt();
-						System.out.println("Aï¿½adir Nombre");
+						System.out.println("Añdir Nombre");
 						String nom = sc.next();
 						M.addMiembro(id, nom);
 					} else if(flag2 == 2) {

@@ -32,12 +32,26 @@ public class AdministradorDeTarea {
 		 
 	 }
 	 /**
+	  * Devuelve el vector de tareas, para poder ser usado en otras clases.
+	  * @return tarea Devuelve todo el array.
+	  */
+	 public HashSet<Tarea> DevolverTareas(){
+		return tarea;
+		 
+	 }
+	 /**
 	  * Añade la tarea que se le pasa como parametro a la lista de tareas-
 	  * @param t
 	  */
 	public void addTarea(Tarea t) {
 		this.tarea.add(t);
 	}
+	/**
+	 * Te busca una tarea en base a su identificaro, y te devuelve la tarea
+	 * si existe, y sino devuelve null.
+	 * @param id id es el identificador de tarea, que usaremos como busqueda.
+	 * @return t  si existe devuelve la tarea, sino devuelve null.
+	 */
 	public Tarea BuscarTarea(int id) {
 		Iterator<Tarea> it = tarea.iterator();
 		while(it.hasNext()) {
@@ -48,6 +62,10 @@ public class AdministradorDeTarea {
 			}
 		return null;
 		}
+	/**
+	 * Elimina una tarea que le envias
+	 * @param t
+	 */
 	public void RemoveTarea(Tarea t) {
 				System.out.println("Seguro de que desea eliminar "+t.getTitulo() +"(S/N)");
 				String resp = sc.next();
