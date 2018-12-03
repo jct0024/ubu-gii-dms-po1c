@@ -151,24 +151,16 @@ public class Main {
 						 * tambien debería cambiar de ProductBacklog a SprintBacklog, estos tendras listas de como ellos funcionan,
 						 * y deberan ser actualizadas cada vez que se cambie una tarea
 						 */
-						System.out.println("Aï¿½adir Titulo");
-						String nom = sc.next();
-						System.out.println("Aï¿½adir Identificador de tarea");
+
+						System.out.println("Lista de tareas:");
+						at.getTarea();
+						System.out.println("Identificador de tarea a Modificar:");
 						int id =sc.nextInt();
-						while(at.existeTarea(id)) {
-							System.out.println("Tarea existente, Pruebe otro identificador:");
-							id =sc.nextInt();
+						System.out.println("Quieres modificar la tarea "+at.BuscarTarea(id).getTitulo()+" (S/N)");
+						String est =sc.next();
+						if (est.equals("S") || est.equals("s")) {
+							System.out.println("Lo modificamos");
 						}
-						System.out.println("Aï¿½adir Coste");
-						int cost =sc.nextInt();
-						System.out.println("Aï¿½adir Beneficio");
-						int ben =sc.nextInt();
-						System.out.println("Aï¿½adir Estado (NUMERO) "
-								+ "0: Pendiente "
-								+ "1: En proceso "
-								+ "2: Validaciï¿½n "
-								+ "3: Terminado ");
-						int est =sc.nextInt();
 					} else if (flag2==4) {
 
 
@@ -177,10 +169,12 @@ public class Main {
 						System.out.println("Introduce el Id de la tarea a eliminar");
 						int id =sc.nextInt();
 						if(at.existeTarea(id)) {
-							at.RemoveTarea(id);				
+							at.RemoveTarea(at.BuscarTarea(id));				
+						} else {
+							System.out.println("Esta tarea no existe");
+						}
 					}
-				 }
-			}
+				}
 			}
 		} 
 
