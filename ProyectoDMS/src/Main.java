@@ -142,7 +142,12 @@ public class Main {
 						int id =sc.nextInt();
 						M.eliminarMiembro(id);
 					} else if (flag2==4) {
-						System.out.println("Introduce el Id de la tarea a eliminar");
+						/**
+						 * Para modificar tarea podriamos usar un patron OBSERVADOR, debido a que si cambia el estado de la tarea, 
+						 * tambien debería cambiar de ProductBacklog a SprintBacklog, estos tendras listas de como ellos funcionan,
+						 * y deberan ser actualizadas cada vez que se cambie una tarea
+						 */
+						System.out.println("Introduce el Id de la tarea a Modificar");
 						int id =sc.nextInt();
 						M.eliminarMiembro(id);					
 					}
