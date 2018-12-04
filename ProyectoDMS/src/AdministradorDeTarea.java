@@ -100,4 +100,17 @@ public class AdministradorDeTarea {
 				System.out.println("Estado: "+estados[t.getEstado()]);
 		}
 	}
+	/**
+	 * Te muestra por pantalla la información basica de todas las tareas.
+	 */
+	public void getDatosTarea(Tarea t) {
+		System.out.println("1.Titulo: " + t.getTitulo());
+		System.out.println("2.Identificador: "+t.getId());
+		System.out.println("3.Estado: "+estados[t.getEstado()]);
+		System.out.println("4.Coste: " + t.getCoste());
+		System.out.println("5.Beneficio: "+t.getBeneficio());
+		System.out.println("6.Descripción: "+t.getDescripcion());
+		System.out.println("7.Meimbro al cargo: "+t.getAsignadoA());
+		System.out.println("8.Requisito: "+t.getRequisito());
+	}
 }
