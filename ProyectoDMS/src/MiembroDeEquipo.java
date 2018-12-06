@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,26 +17,19 @@ public class MiembroDeEquipo {
 		this.id=id;
 		this.nombre=nombre;
 	}
-	/**
-	 * Metodo que elimina un miembro del equipo y acepta el identificador como tal
-	 * @param id
-	 */
-	public void eliminarMiembro (int id) {
-		miembros.remove(id);
+	
+	public int getId() {
+		return id;
 	}
-	/**
-	 * Añadir miembro del equipo.
-	 * @param id
-	 * @param nombre
-	 */
-	public void addMiembro (int id,String nombre) {
-		miembros.put(id, nombre);
+	public void setId(int id) {
+		this.id = id;
 	}
-	/**
-	 * Devolver la lista de los miembros de equipos.
-	 */
-	public void getmiembro () {
-		System.out.println(miembros.values());
+	public String getNombre() {
+		return nombre;
 	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 
 }

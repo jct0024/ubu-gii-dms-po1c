@@ -17,12 +17,20 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
 		AdministradorDeTarea at = AdministradorDeTarea.getAdministrador();
-		MiembroDeEquipo M = new MiembroDeEquipo();
+		AdministradorDeMiembro am = AdministradorDeMiembro.getAdministrador();
+		MiembroDeEquipo M1 = new MiembroDeEquipo(1,"JC");
+		MiembroDeEquipo M2 = new MiembroDeEquipo(2,"Guille");
+		MiembroDeEquipo M3 = new MiembroDeEquipo(3,"JA");
+		MiembroDeEquipo M4 = new MiembroDeEquipo(4,"Pepa");
+		am.addMiembro(M1);
+		am.addMiembro(M2);
+		am.addMiembro(M3);
+		am.addMiembro(M4);
 		Requisito R = new Requisito();
-		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M,3);
-		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M,2);
-		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M,1);
-		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M,0);
+		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,R, M1,3);
+		Tarea b = new Tarea ("Diseñar", 1,  20, 100,R, M2,2);
+		Tarea c = new Tarea ("Procesar", 2,  20, 100,R, M3,1);
+		Tarea d = new Tarea ("Revisar fallos", 3,  20, 100,R, M4,0);
 		at.addTarea(a);
 		at.addTarea(c);
 		at.addTarea(d);
@@ -52,15 +60,26 @@ public class Main {
 					if(flag2==1) {
 						System.out.println("Añadir DNI");
 						int id =sc.nextInt();
+						while(am.existeMiembro(id)) {
+							System.out.println("Miembro existente, Pruebe otro identificador:");
+							id =sc.nextInt();
+						}
 						System.out.println("Añdir Nombre");
 						String nom = sc.next();
-						M.addMiembro(id, nom);
+						am.addMiembro(new MiembroDeEquipo(id, nom));
 					} else if(flag2 == 2) {
-						M.getmiembro();
+						am.getMiembro();
 					} else if (flag2 == 3) {
-						System.out.println("Introduce el Id del miembro a eliminar");
+						System.out.println("Lista de los miembros existentes:");
+						am.getMiembro();
+						System.out.println("Introduce el Id deel miembro a eliminar");
 						int id =sc.nextInt();
-						M.eliminarMiembro(id);
+						if(am.existeMiembro(id)) {
+							am.RemoveMiembro(am.BuscarMiembro(id));				
+						} else {
+							System.out.println("Este miembro no existe");
+						}
+
 					}
 				}
 
@@ -102,7 +121,7 @@ public class Main {
 								+ "3: Terminado ");
 						int est =sc.nextInt();
 						if (est==0) {
-							at.addTarea(new Tarea(nom,id,cost,ben,R,M,est));
+							at.addTarea(new Tarea(nom,id,cost,ben,R,M1,est));
 						}
 					} else if(flag2 == 2) {	
 						System.out.println("Que tareas deseas mostrar:");
