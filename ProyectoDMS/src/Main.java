@@ -144,7 +144,7 @@ public class Main {
 								 * Ha modificar para que te muestre solo
 								 * los de estado = 0.
 								 */
-								at.getTarea();
+								at.getBacklog(0);
 								@SuppressWarnings("unused")
 								String sTexto4 = br.readLine();
 								break;
@@ -153,7 +153,7 @@ public class Main {
 								 * Ha modificar para que te muestre solo 
 								 * los de estado != 0.
 								 */
-								at.getTarea();
+								at.getBacklog(1);
 								@SuppressWarnings("unused")
 								String sTexto0 = br.readLine();
 								break;
