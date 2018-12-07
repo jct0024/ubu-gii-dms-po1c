@@ -13,6 +13,8 @@ public class AdministradorDeTarea {
 	private String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 	private static AdministradorDeTarea miAdministrador;
 	private Scanner sc = new Scanner(System.in);
+	private Backlog sb = new SprintBacklog();
+	private Backlog pb = new ProductBacklog();
 	/**
 	 * Constructor privado, solo se quiere una instancia de este
 	 */
@@ -44,6 +46,11 @@ public class AdministradorDeTarea {
 	  * @param t
 	  */
 	public void addTarea(Tarea t) {
+		if(t.getEstado() == 0) {
+			pb.actualizar();
+		} else {
+			sb.actualizar();
+		}
 		this.tarea.add(t);
 	}
 	/**
@@ -112,5 +119,57 @@ public class AdministradorDeTarea {
 		System.out.println("6.Descripción: "+t.getDescripcion());
 		System.out.println("7.Meimbro al cargo: "+t.getAsignadoA());
 		System.out.println("8.Requisito: "+t.getRequisito());
+	}
+	public void modificarTarea() {
+		System.out.println("Identificador de tarea a Modificar:");
+		int id =sc.nextInt();
+		System.out.println("Quieres modificar la tarea "+this.BuscarTarea(id).getTitulo()+" (S/N)");
+		String est =sc.next();
+		if (est.equals("S") || est.equals("s")) {
+			this.getDatosTarea(this.BuscarTarea(id));
+			System.out.println("Elija elemento a modificar");
+			int opc =sc.nextInt();
+			switch (opc) {
+			case 0:
+				break;
+			case 1:
+				System.out.println("Nuevo titulo: ");
+				String tit =sc.next();
+				this.BuscarTarea(id).setTitulo(tit);
+				break;
+			case 2:
+				System.out.println("Nuevo identificador: ");
+				Integer ide =sc.nextInt();
+				this.BuscarTarea(id).setId(ide);
+				break;
+			case 3:
+				System.out.println("Nuevo estado");
+				
+				break;
+			case 4:
+				System.out.println("Nuevo Coste: ");
+				Integer cost=sc.nextInt();
+				this.BuscarTarea(id).setCoste(cost);
+				break;
+			case 5:
+				System.out.println("Nuevo Beneficio: ");
+				Integer bene =sc.nextInt();
+				this.BuscarTarea(id).setBeneficio(bene);
+				break;
+
+			case 6:
+				System.out.println("Nueva Descripción: ");
+				String desc =sc.next();
+				this.BuscarTarea(id).setDescripcion(desc);
+				break;
+
+			case 7:
+				System.out.println("Nuevo miembro: ");
+				break;
+			case 8:
+				System.out.println("Nuevo requisito: ");
+				break;
+			}
+		}
 	}
 }

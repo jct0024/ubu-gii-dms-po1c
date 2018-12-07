@@ -172,56 +172,7 @@ public class Main {
 
 						System.out.println("Lista de tareas:");
 						at.getTarea();
-						System.out.println("Identificador de tarea a Modificar:");
-						int id =sc.nextInt();
-						System.out.println("Quieres modificar la tarea "+at.BuscarTarea(id).getTitulo()+" (S/N)");
-						String est =sc.next();
-						if (est.equals("S") || est.equals("s")) {
-							at.getDatosTarea(at.BuscarTarea(id));
-							System.out.println("Elija elemento a modificar");
-							int opc =sc.nextInt();
-							switch (opc) {
-							case 0:
-								break;
-							case 1:
-								System.out.println("Nuevo titulo: ");
-								String tit =sc.next();
-								at.BuscarTarea(id).setTitulo(tit);
-								break;
-							case 2:
-								System.out.println("Nuevo identificador: ");
-								Integer ide =sc.nextInt();
-								at.BuscarTarea(id).setId(ide);
-								break;
-							case 3:
-								System.out.println("Nuevo estado");
-								
-								break;
-							case 4:
-								System.out.println("Nuevo Coste: ");
-								Integer cost=sc.nextInt();
-								at.BuscarTarea(id).setCoste(cost);
-								break;
-							case 5:
-								System.out.println("Nuevo Beneficio: ");
-								Integer bene =sc.nextInt();
-								at.BuscarTarea(id).setBeneficio(bene);
-								break;
-
-							case 6:
-								System.out.println("Nueva Descripción: ");
-								String desc =sc.next();
-								at.BuscarTarea(id).setDescripcion(desc);
-								break;
-
-							case 7:
-								System.out.println("Nuevo miembro: ");
-								break;
-							case 8:
-								System.out.println("Nuevo requisito: ");
-								break;
-							}
-						}
+						at.modificarTarea();
 					} else if (flag2==4) {
 
 
