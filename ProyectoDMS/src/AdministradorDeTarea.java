@@ -13,8 +13,8 @@ public class AdministradorDeTarea {
 	private String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 	private static AdministradorDeTarea miAdministrador;
 	private Scanner sc = new Scanner(System.in);
-	private SprintBacklog sb = new SprintBacklog();
-	private ProductBacklog pb = new ProductBacklog();
+	private static Backlog sb;
+	private static Backlog pb;
 	/**
 	 * Constructor privado, solo se quiere una instancia de este
 	 */
@@ -27,8 +27,10 @@ public class AdministradorDeTarea {
 	  * @return miAdministrador Objeto del tipo AdministradorDeTarea, que sirve para manejar de manera externa las tareas.
 	  */
 	 public static final AdministradorDeTarea getAdministrador() {
-		 if (miAdministrador ==null) {
+		 if (miAdministrador == null) {
 			 miAdministrador = new AdministradorDeTarea();
+			 sb = new SprintBacklog();
+			 pb = new ProductBacklog(); 
 		 }
 		return miAdministrador;
 		 
@@ -107,9 +109,14 @@ public class AdministradorDeTarea {
 				System.out.println("Estado: "+estados[t.getEstado()]);
 		}
 	}
+	
+	/**
+	 * Imprime por pantalla las listas de tareas del sprintBacklog o el ProductBacklog segun el estado de las tareas.
+	 * @param est (Estado de las tareas)
+	 */
 	public void getBacklog(int est) {
 		if(est == 0) {
-			Iterator it = pb.getProductBacklog().iterator();
+			Iterator it = pb.getBacklog().iterator();
 			while(it.hasNext()) {
 				Tarea t = (Tarea)it.next();
 					System.out.println("Titulo: " + t.getTitulo());
@@ -117,7 +124,7 @@ public class AdministradorDeTarea {
 					System.out.println("Estado: "+estados[t.getEstado()]);
 			}
 		} else {
-			Iterator it = sb.getSprintBacklog().iterator();
+			Iterator it = sb.getBacklog().iterator();
 			while(it.hasNext()) {
 				Tarea t = (Tarea)it.next();
 					System.out.println("Titulo: " + t.getTitulo());
@@ -127,6 +134,25 @@ public class AdministradorDeTarea {
 			
 		}
 	}
+	
+	/**
+	 * Devuelve el productBacklog del administrador de tareas.
+	 * @return Pb (ProductBacklog)
+	 */
+	public Backlog getProductBacklog(){
+		
+		return pb;
+	}
+	
+	/**
+	 * Devuelve el SprintBacklog del administrador de tareas.
+	 * @return Sb (SprintBacklog)
+	 */
+	public Backlog getSprintBacklog(){
+		
+		return sb;
+	}
+	
 	/**
 	 * Te muestra por pantalla la información basica de todas las tareas.
 	 */
@@ -163,7 +189,13 @@ public class AdministradorDeTarea {
 				this.BuscarTarea(id).setId(ide);
 				break;
 			case 3:
-				System.out.println("Nuevo estado");
+				System.out.println("Elige un estado estado");
+				System.out.println("0 Pendiente");
+				System.out.println("1 En_proceso");
+				System.out.println("2 Validacion");
+				System.out.println("3 Terminado");
+				Integer esta = sc.nextInt();
+				this.BuscarTarea(id).setEstado(esta);
 				
 				break;
 			case 4:
