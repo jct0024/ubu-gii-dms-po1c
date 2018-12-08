@@ -13,8 +13,7 @@ public class AdministradorDeTarea {
 	private String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 	private static AdministradorDeTarea miAdministrador;
 	private Scanner sc = new Scanner(System.in);
-	private SprintBacklog sb = new SprintBacklog();
-	private ProductBacklog pb = new ProductBacklog();
+
 	/**
 	 * Constructor privado, solo se quiere una instancia de este
 	 */
@@ -46,11 +45,7 @@ public class AdministradorDeTarea {
 	  * @param t
 	  */
 	public void addTarea(Tarea t) {
-		if(t.getEstado() == 0) {
-			pb.actualizar();
-		} else {
-			sb.actualizar();
-		}
+
 		this.tarea.add(t);
 	}
 	/**
@@ -105,26 +100,6 @@ public class AdministradorDeTarea {
 				System.out.println("Titulo: " + t.getTitulo());
 				System.out.println("Identificador: "+t.getId());
 				System.out.println("Estado: "+estados[t.getEstado()]);
-		}
-	}
-	public void getBacklog(int est) {
-		if(est == 0) {
-			Iterator it = pb.getProductBacklog().iterator();
-			while(it.hasNext()) {
-				Tarea t = (Tarea)it.next();
-					System.out.println("Titulo: " + t.getTitulo());
-					System.out.println("Identificador: "+t.getId());
-					System.out.println("Estado: "+estados[t.getEstado()]);
-			}
-		} else {
-			Iterator it = sb.getSprintBacklog().iterator();
-			while(it.hasNext()) {
-				Tarea t = (Tarea)it.next();
-					System.out.println("Titulo: " + t.getTitulo());
-					System.out.println("Identificador: "+t.getId());
-					System.out.println("Estado: "+estados[t.getEstado()]);
-			}
-			
 		}
 	}
 	/**
