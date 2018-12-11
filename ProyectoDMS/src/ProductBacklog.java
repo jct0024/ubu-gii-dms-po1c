@@ -10,6 +10,10 @@ public class ProductBacklog extends Backlog{
 			Tarea t = (Tarea)it.next();
 			if (t.getEstado() == 0) {
 				ProductTareas.add(t);
+			} else {
+				if(ProductTareas.contains(t)) {
+					ProductTareas.remove(t);
+				}
 			}
 		}
 	}

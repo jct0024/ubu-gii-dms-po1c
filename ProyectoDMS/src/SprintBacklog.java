@@ -10,6 +10,10 @@ public class SprintBacklog extends Backlog{
 			Tarea t = (Tarea)it.next();
 			if (t.getEstado() != 0) {
 				SprintBacklog.add(t);
+			} else {
+				if(SprintBacklog.contains(t)) {
+					SprintBacklog.remove(t);
+				}
 			}
 		}
 	}
