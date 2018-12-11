@@ -16,6 +16,8 @@ public class Tarea {
 	protected HashSet<Tarea> tarea= new HashSet<Tarea>();
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	protected static String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
+	private SprintBacklog sb = new SprintBacklog();
+	private ProductBacklog pb = new ProductBacklog();
 	
 	/**
 	 * Tarea tendria en el constructor los datos necesarios para cuando se instancia una tarea,
@@ -33,6 +35,8 @@ public class Tarea {
 		this.requisito = requisito;
 		this.asignadoA = asignadoA;
 		this.estado = estado;
+		pb.actualizar();
+		sb.actualizar();
 	}
 	public void addTarea(Tarea t) {
 		tarea.add(t);
@@ -104,6 +108,11 @@ public class Tarea {
 	}
 
 	public void setEstado(int estado) {
+		if(estado == 0) {
+			pb.actualizar();
+		} else {
+			sb.actualizar();
+		}
 		this.estado = estado;
 	}
 
@@ -114,4 +123,15 @@ public class Tarea {
 	public void setAsignadoA(MiembroDeEquipo asignadoA) {
 		this.asignadoA = asignadoA;
 	}
+	public void imprimirBacklog(int est) {
+		if(est==0) {
+		Iterator<Tarea> it = pb.getProductBacklog().iterator();
+		while(it.hasNext()) {
+			Tarea t = (Tarea)it.next();
+				System.out.println("Titulo: " + t.getTitulo());
+				System.out.println("Identificador: "+t.getId());
+		}
+		}
+	}
+
 }
