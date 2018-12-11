@@ -3,7 +3,6 @@ import java.util.Iterator;
 
 public class ProductBacklog extends Backlog{
 	private HashSet<Tarea> ProductTareas= new HashSet<Tarea>();
-	AdministradorDeTarea at = AdministradorDeTarea.getAdministrador();
 	@Override
 	protected void actualizar() {
 		Iterator<Tarea> it = at.DevolverTareas().iterator();
@@ -14,7 +13,8 @@ public class ProductBacklog extends Backlog{
 			}
 		}
 	}
-	public HashSet<Tarea> getProductBacklog() {
+	@Override
+	public HashSet<Tarea> getBacklog() {
 		return ProductTareas;
 		
 	}

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AdministradorDeTarea {
 	/**
-	 * Inicialización de variables.
+	 * Inicializaciï¿½n de variables.
 	 * Tarea = set donde se guardan todas las tareas que presenta el prorama.
 	 * miAdministrador = unica instancia del objeto para poder ser.
 	 */
@@ -13,7 +13,8 @@ public class AdministradorDeTarea {
 	private String[] estados = {"Pendiente","En_proceso","Validacion","Terminado"};
 	private static AdministradorDeTarea miAdministrador;
 	private Scanner sc = new Scanner(System.in);
-
+	private static Backlog sb;
+	private static Backlog pb;
 	/**
 	 * Constructor privado, solo se quiere una instancia de este
 	 */
@@ -21,13 +22,15 @@ public class AdministradorDeTarea {
 	
 	}
 	 /**
-	  * Método unica instancia del Singlenton, si todavia no se ha instanciado se instancia, sino 
+	  * Mï¿½todo unica instancia del Singlenton, si todavia no se ha instanciado se instancia, sino 
 	  * se devuelve la instancia que ya esta creada para evitar crear otra.
 	  * @return miAdministrador Objeto del tipo AdministradorDeTarea, que sirve para manejar de manera externa las tareas.
 	  */
 	 public static final AdministradorDeTarea getAdministrador() {
-		 if (miAdministrador ==null) {
+		 if (miAdministrador == null) {
 			 miAdministrador = new AdministradorDeTarea();
+			 sb = new SprintBacklog();
+			 pb = new ProductBacklog(); 
 		 }
 		return miAdministrador;
 		 
@@ -41,7 +44,7 @@ public class AdministradorDeTarea {
 		 
 	 }
 	 /**
-	  * Añade la tarea que se le pasa como parametro a la lista de tareas-
+	  * Aï¿½ade la tarea que se le pasa como parametro a la lista de tareas-
 	  * @param t
 	  */
 	public void addTarea(Tarea t) {
@@ -76,7 +79,7 @@ public class AdministradorDeTarea {
 				}
 			} 
 	/**
-	 * Comprueba a través del identificador si la tarea buscada existe.
+	 * Comprueba a travï¿½s del identificador si la tarea buscada existe.
 	 * @param id
 	 * @return boolean si existe devuelve verdadero, sino existe devuelve falso.
 	 */
@@ -91,7 +94,7 @@ public class AdministradorDeTarea {
 		return false;
 	}
 	/**
-	 * Te muestra por pantalla la información basica de todas las tareas.
+	 * Te muestra por pantalla la informaciï¿½n basica de todas las tareas.
 	 */
 	public void getTarea() {
 		Iterator<Tarea> it = tarea.iterator();
@@ -102,8 +105,52 @@ public class AdministradorDeTarea {
 				System.out.println("Estado: "+estados[t.getEstado()]);
 		}
 	}
+	
 	/**
-	 * Te muestra por pantalla la información basica de todas las tareas.
+	 * Imprime por pantalla las listas de tareas del sprintBacklog o el ProductBacklog segun el estado de las tareas.
+	 * @param est (Estado de las tareas)
+	 */
+	public void getBacklog(int est) {
+		if(est == 0) {
+			Iterator it = pb.getBacklog().iterator();
+			while(it.hasNext()) {
+				Tarea t = (Tarea)it.next();
+					System.out.println("Titulo: " + t.getTitulo());
+					System.out.println("Identificador: "+t.getId());
+					System.out.println("Estado: "+estados[t.getEstado()]);
+			}
+		} else {
+			Iterator it = sb.getBacklog().iterator();
+			while(it.hasNext()) {
+				Tarea t = (Tarea)it.next();
+					System.out.println("Titulo: " + t.getTitulo());
+					System.out.println("Identificador: "+t.getId());
+					System.out.println("Estado: "+estados[t.getEstado()]);
+			}
+			
+		}
+	}
+	
+	/**
+	 * Devuelve el productBacklog del administrador de tareas.
+	 * @return Pb (ProductBacklog)
+	 */
+	public Backlog getProductBacklog(){
+		
+		return pb;
+	}
+	
+	/**
+	 * Devuelve el SprintBacklog del administrador de tareas.
+	 * @return Sb (SprintBacklog)
+	 */
+	public Backlog getSprintBacklog(){
+		
+		return sb;
+	}
+	
+	/**
+	 * Te muestra por pantalla la informaciï¿½n basica de todas las tareas.
 	 */
 	public void getDatosTarea(Tarea t) {
 		System.out.println("1.Titulo: " + t.getTitulo());
@@ -111,7 +158,7 @@ public class AdministradorDeTarea {
 		System.out.println("3.Estado: "+estados[t.getEstado()]);
 		System.out.println("4.Coste: " + t.getCoste());
 		System.out.println("5.Beneficio: "+t.getBeneficio());
-		System.out.println("6.Descripción: "+t.getDescripcion());
+		System.out.println("6.Descripciï¿½n: "+t.getDescripcion());
 		System.out.println("7.Meimbro al cargo: "+t.getAsignadoA());
 		System.out.println("8.Requisito: "+t.getRequisito());
 	}
@@ -138,7 +185,13 @@ public class AdministradorDeTarea {
 				this.BuscarTarea(id).setId(ide);
 				break;
 			case 3:
-				System.out.println("Nuevo estado");
+				System.out.println("Elige un estado estado");
+				System.out.println("0 Pendiente");
+				System.out.println("1 En_proceso");
+				System.out.println("2 Validacion");
+				System.out.println("3 Terminado");
+				Integer esta = sc.nextInt();
+				this.BuscarTarea(id).setEstado(esta);
 				
 				break;
 			case 4:
@@ -153,7 +206,7 @@ public class AdministradorDeTarea {
 				break;
 
 			case 6:
-				System.out.println("Nueva Descripción: ");
+				System.out.println("Nueva Descripciï¿½n: ");
 				String desc =sc.next();
 				this.BuscarTarea(id).setDescripcion(desc);
 				break;

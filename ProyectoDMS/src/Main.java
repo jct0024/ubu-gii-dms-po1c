@@ -39,6 +39,8 @@ public class Main {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		int flag=10000;
+		at.getProductBacklog().actualizar();
+		at.getSprintBacklog().actualizar();
 		/**
 		 * Menu didactico para navegar por la aplicaciï¿½n a rellenar
 		 */
@@ -168,10 +170,11 @@ public class Main {
 						 * tambien debería cambiar de ProductBacklog a SprintBacklog, estos tendras listas de como ellos funcionan,
 						 * y deberan ser actualizadas cada vez que se cambie una tarea
 						 */
-
 						System.out.println("Lista de tareas:");
 						at.getTarea();
 						at.modificarTarea();
+						at.getProductBacklog().actualizar();
+						at.getSprintBacklog().actualizar();
 					} else if (flag2==4) {
 
 
