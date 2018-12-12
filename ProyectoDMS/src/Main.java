@@ -45,6 +45,7 @@ public class Main {
 		at.addTarea(c);
 		at.addTarea(d);
 		at.addTarea(b);
+		
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		int flag=10000;
@@ -156,7 +157,6 @@ public class Main {
 								 * Ha modificar para que te muestre solo
 								 * los de estado = 0.
 								 */
-								at.getBacklog(0);
 								@SuppressWarnings("unused")
 								String sTexto4 = br.readLine();
 								break;
@@ -165,7 +165,6 @@ public class Main {
 								 * Ha modificar para que te muestre solo 
 								 * los de estado != 0.
 								 */
-								at.getBacklog(1);
 								@SuppressWarnings("unused")
 								String sTexto0 = br.readLine();
 								break;

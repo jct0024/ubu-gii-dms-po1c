@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AdministradorDeTarea {
 	/**
-	 * Inicialización de variables.
+	 * Inicializaciï¿½n de variables.
 	 * Tarea = set donde se guardan todas las tareas que presenta el prorama.
 	 * miAdministrador = unica instancia del objeto para poder ser.
 	 */
@@ -22,7 +22,7 @@ public class AdministradorDeTarea {
 	
 	}
 	 /**
-	  * Método unica instancia del Singlenton, si todavia no se ha instanciado se instancia, sino 
+	  * Mï¿½todo unica instancia del Singlenton, si todavia no se ha instanciado se instancia, sino 
 	  * se devuelve la instancia que ya esta creada para evitar crear otra.
 	  * @return miAdministrador Objeto del tipo AdministradorDeTarea, que sirve para manejar de manera externa las tareas.
 	  */
@@ -44,15 +44,11 @@ public class AdministradorDeTarea {
 		 
 	 }
 	 /**
-	  * Añade la tarea que se le pasa como parametro a la lista de tareas-
+	  * Aï¿½ade la tarea que se le pasa como parametro a la lista de tareas-
 	  * @param t
 	  */
 	public void addTarea(Tarea t) {
-		if(t.getEstado() == 0) {
-			pb.actualizar();
-		} else {
-			sb.actualizar();
-		}
+
 		this.tarea.add(t);
 	}
 	/**
@@ -83,7 +79,7 @@ public class AdministradorDeTarea {
 				}
 			} 
 	/**
-	 * Comprueba a través del identificador si la tarea buscada existe.
+	 * Comprueba a travï¿½s del identificador si la tarea buscada existe.
 	 * @param id
 	 * @return boolean si existe devuelve verdadero, sino existe devuelve falso.
 	 */
@@ -98,7 +94,7 @@ public class AdministradorDeTarea {
 		return false;
 	}
 	/**
-	 * Te muestra por pantalla la información basica de todas las tareas.
+	 * Te muestra por pantalla la informaciï¿½n basica de todas las tareas.
 	 */
 	public void getTarea() {
 		Iterator<Tarea> it = tarea.iterator();
@@ -154,7 +150,7 @@ public class AdministradorDeTarea {
 	}
 	
 	/**
-	 * Te muestra por pantalla la información basica de todas las tareas.
+	 * Te muestra por pantalla la informaciï¿½n basica de todas las tareas.
 	 */
 	public void getDatosTarea(Tarea t) {
 		System.out.println("1.Titulo: " + t.getTitulo());
@@ -162,7 +158,7 @@ public class AdministradorDeTarea {
 		System.out.println("3.Estado: "+estados[t.getEstado()]);
 		System.out.println("4.Coste: " + t.getCoste());
 		System.out.println("5.Beneficio: "+t.getBeneficio());
-		System.out.println("6.Descripción: "+t.getDescripcion());
+		System.out.println("6.Descripciï¿½n: "+t.getDescripcion());
 		System.out.println("7.Meimbro al cargo: "+t.getAsignadoA());
 		System.out.println("8.Requisito: "+t.getRequisito());
 	}
@@ -210,7 +206,7 @@ public class AdministradorDeTarea {
 				break;
 
 			case 6:
-				System.out.println("Nueva Descripción: ");
+				System.out.println("Nueva Descripciï¿½n: ");
 				String desc =sc.next();
 				this.BuscarTarea(id).setDescripcion(desc);
 				break;
