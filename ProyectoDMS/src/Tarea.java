@@ -125,7 +125,7 @@ public class Tarea {
 	}
 	public void imprimirBacklog(int est) {
 		if(est==0) {
-		Iterator<Tarea> it = pb.getProductBacklog().iterator();
+		Iterator<Tarea> it = pb.getBacklog().iterator();
 		while(it.hasNext()) {
 			Tarea t = (Tarea)it.next();
 				System.out.println("Titulo: " + t.getTitulo());

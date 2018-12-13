@@ -93,14 +93,14 @@ public class AdministradorDeMiembro {
 	}
 	
 	/**
-	 * Te muestra por pantalla la información de todas los miembros.
+	 * Te muestra por pantalla la información de todos los miembros.
 	 */
 	public void getMiembro() {
 		Iterator<MiembroDeEquipo> it = miembros.iterator();
 		while(it.hasNext()) {
 			MiembroDeEquipo m = (MiembroDeEquipo)it.next();
 				System.out.println("Identificador: "+m.getId());
-				System.out.println("Titulo: " + m.getNombre());
+				System.out.println("Nombre: " + m.getNombre());
 				System.out.println("--------------------------");
 		}
 	}

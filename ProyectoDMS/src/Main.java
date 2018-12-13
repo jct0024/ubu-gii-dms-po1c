@@ -22,7 +22,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		readExcelFile(new File("Aqui hay que añadir la base de datos"));
+		//readExcelFile(new File("Aqui hay que añadir la base de datos"));
 		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
@@ -102,7 +102,8 @@ public class Main {
 					System.out.println("1: Aï¿½adir Tarea");
 					System.out.println("2: Lista de Tareas");
 					System.out.println("3: Modificar tarea");
-					System.out.println("4: Eliminar Tarea");
+					System.out.println("4: Aisgnar Miembro a tarea");
+					System.out.println("5: Eliminar Tarea");
 					System.out.println("0: Volver al menu principal");
 					flag2=sc.nextInt();
 					if(flag2==1) {
@@ -185,7 +186,7 @@ public class Main {
 						at.modificarTarea();
 						at.getProductBacklog().actualizar();
 						at.getSprintBacklog().actualizar();
-					} else if (flag2==4) {
+					} else if (flag2==5) {
 
 
 						System.out.println("Lista de las tareas existentes:");
@@ -197,6 +198,18 @@ public class Main {
 						} else {
 							System.out.println("Esta tarea no existe");
 						}
+					}else if (flag2 == 4) {
+						at.getTarea();
+						System.out.println("Elige tarea a la que asignar miembro:");
+						System.out.println("Identificador de tarea a la que asignar miembro:");
+						int idTarea =sc.nextInt();
+						am.getMiembro();
+						System.out.println("Elige miembro de equipo a añadir a tarea:");
+						System.out.println("Identificador de tarea a la que asignar miembro:");
+						int idMiembro =sc.nextInt();
+						MiembroDeEquipo Asig = am.BuscarMiembro(idMiembro);
+						at.asignarMiembro(Asig,idTarea);
+						
 					}
 				}
 			}

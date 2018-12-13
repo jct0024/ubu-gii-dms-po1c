@@ -103,6 +103,7 @@ public class AdministradorDeTarea {
 				System.out.println("Titulo: " + t.getTitulo());
 				System.out.println("Identificador: "+t.getId());
 				System.out.println("Estado: "+estados[t.getEstado()]);
+				System.out.println("----------------------------------");
 		}
 	}
 	
@@ -118,6 +119,7 @@ public class AdministradorDeTarea {
 					System.out.println("Titulo: " + t.getTitulo());
 					System.out.println("Identificador: "+t.getId());
 					System.out.println("Estado: "+estados[t.getEstado()]);
+					System.out.println("----------------------------------");
 			}
 		} else {
 			Iterator it = sb.getBacklog().iterator();
@@ -126,6 +128,7 @@ public class AdministradorDeTarea {
 					System.out.println("Titulo: " + t.getTitulo());
 					System.out.println("Identificador: "+t.getId());
 					System.out.println("Estado: "+estados[t.getEstado()]);
+					System.out.println("----------------------------------");
 			}
 			
 		}
@@ -159,7 +162,7 @@ public class AdministradorDeTarea {
 		System.out.println("4.Coste: " + t.getCoste());
 		System.out.println("5.Beneficio: "+t.getBeneficio());
 		System.out.println("6.Descripciï¿½n: "+t.getDescripcion());
-		System.out.println("7.Meimbro al cargo: "+t.getAsignadoA());
+		System.out.println("7.Meimbro al cargo: "+t.getAsignadoA().nombre);
 		System.out.println("8.Requisito: "+t.getRequisito());
 	}
 	public void modificarTarea() {
@@ -206,7 +209,7 @@ public class AdministradorDeTarea {
 				break;
 
 			case 6:
-				System.out.println("Nueva Descripciï¿½n: ");
+				System.out.println("Nueva Descripción: ");
 				String desc =sc.next();
 				this.BuscarTarea(id).setDescripcion(desc);
 				break;
@@ -218,6 +221,13 @@ public class AdministradorDeTarea {
 				System.out.println("Nuevo requisito: ");
 				break;
 			}
+		}
+	}
+	public void asignarMiembro(MiembroDeEquipo m, int id) {
+		System.out.println("Quieres modificar la tarea "+this.BuscarTarea(id).getTitulo()+" (S/N)");
+		String est =sc.next();
+		if (est.equals("S") || est.equals("s")) {
+			this.BuscarTarea(id).setAsignadoA(m);
 		}
 	}
 }
