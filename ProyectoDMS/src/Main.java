@@ -1,4 +1,7 @@
 import java.io.BufferedReader;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -12,6 +15,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
 public class Main {
 	/**
 	 * El main tendrï¿½ el menu necesarios y los atributos globales, para modificar y navegar por las
@@ -22,7 +26,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		//readExcelFile(new File("Aqui hay que añadir la base de datos"));
+		readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\prueba.xlsx"));
 		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
@@ -223,19 +227,19 @@ public class Main {
             excelStream = new FileInputStream(excelFile);
             // High level representation of a workbook.
             // Representación del más alto nivel de la hoja excel.
-            HSSFWorkbook hssfWorkbook = new HSSFWorkbook(excelStream);
+            Workbook workbook = WorkbookFactory.create(excelFile);
             // We chose the sheet is passed as parameter. 
             // Elegimos la hoja que se pasa por parámetro.
-            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
             // An object that allows us to read a row of the excel sheet, and extract from it the cell contents.
             // Objeto que nos permite leer un fila de la hoja excel, y de aquí extraer el contenido de las celdas.
-            HSSFRow hssfRow;
+            Row Row;
             // Initialize the object to read the value of the cell 
             // Inicializo el objeto que leerá el valor de la celda
-            HSSFCell cell;                        
+            Cell cell;                        
             // I get the number of rows occupied on the sheet
             // Obtengo el número de filas ocupadas en la hoja
-            int rows = hssfSheet.getLastRowNum();
+            int rows = sheet.getLastRowNum();
             // I get the number of columns occupied on the sheet
             // Obtengo el número de columnas ocupadas en la hoja
             int cols = 0;            
@@ -245,23 +249,23 @@ public class Main {
             // For this example we'll loop through the rows getting the data we want
             // Para este ejemplo vamos a recorrer las filas obteniendo los datos que queremos            
             for (int r = 0; r < rows; r++) {
-                hssfRow = hssfSheet.getRow(r);
-                if (hssfRow == null){
+                Row = sheet.getRow(r);
+                if (Row == null){
                     break;
                 }else{
                     System.out.print("Row: " + r + " -> ");
-                    for (int c = 0; c < (cols = hssfRow.getLastCellNum()); c++) {
+                    for (int c = 0; c < (cols = Row.getLastCellNum()); c++) {
                         /* 
                             We have those cell types (tenemos estos tipos de celda): 
                                 CELL_TYPE_BLANK, CELL_TYPE_NUMERIC, CELL_TYPE_BLANK, CELL_TYPE_FORMULA, CELL_TYPE_BOOLEAN, CELL_TYPE_ERROR
                         */
-                        cellValue = hssfRow.getCell(c) == null?"":
-                                (hssfRow.getCell(c).getCellType() == CellType.STRING)?hssfRow.getCell(c).getStringCellValue():
-                                (hssfRow.getCell(c).getCellType() == CellType.NUMERIC)?"" + hssfRow.getCell(c).getNumericCellValue():
-                                (hssfRow.getCell(c).getCellType() == CellType.BOOLEAN)?"" + hssfRow.getCell(c).getBooleanCellValue():
-                                (hssfRow.getCell(c).getCellType() == CellType.BLANK)?"BLANK":
-                                (hssfRow.getCell(c).getCellType() == CellType.FORMULA)?"FORMULA":
-                                (hssfRow.getCell(c).getCellType() == CellType.ERROR)?"ERROR":"";                       
+                        cellValue = Row.getCell(c) == null?"":
+                                (Row.getCell(c).getCellType() == CellType.STRING)?Row.getCell(c).getStringCellValue():
+                                (Row.getCell(c).getCellType() == CellType.NUMERIC)?"" + Row.getCell(c).getNumericCellValue():
+                                (Row.getCell(c).getCellType() == CellType.BOOLEAN)?"" + Row.getCell(c).getBooleanCellValue():
+                                (Row.getCell(c).getCellType() == CellType.BLANK)?"BLANK":
+                                (Row.getCell(c).getCellType() == CellType.FORMULA)?"FORMULA":
+                                (Row.getCell(c).getCellType() == CellType.ERROR)?"ERROR":"";                       
                         System.out.print("[Column " + c + ": " + cellValue + "] ");
                     }
                     System.out.println();
