@@ -26,7 +26,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\prueba.xlsx"));
+		readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\prueba.xls"));
 		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
