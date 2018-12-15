@@ -4,6 +4,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,12 +28,21 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\prueba.xls"));
+		List<List<Object>> Mtareas =readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls"));
+		List<List<Object>> Musuarios =readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls"));
 		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
+		System.out.println(Mtareas);
+		System.out.println();
+		System.out.println(Musuarios);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
 		AdministradorDeTarea at = AdministradorDeTarea.getAdministrador();
 		AdministradorDeMiembro am = AdministradorDeMiembro.getAdministrador();
+		for (List<Object> l: Musuarios) {
+			System.out.println(l.get(0));
+			am.addMiembro(new MiembroDeEquipo((Integer)l.get(0),(String)l.get(1)));
+		}
+		/*
 		MiembroDeEquipo M1 = new MiembroDeEquipo(1,"JC");
 		MiembroDeEquipo M2 = new MiembroDeEquipo(2,"Guille");
 		MiembroDeEquipo M3 = new MiembroDeEquipo(3,"JA");
@@ -40,6 +51,7 @@ public class Main {
 		am.addMiembro(M2);
 		am.addMiembro(M3);
 		am.addMiembro(M4);
+		*/
 		Requisito R = new Requisito();
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,3);
 		Tarea b = new Tarea ("Diseñar", 1,  20, 100,2);
@@ -221,9 +233,11 @@ public class Main {
 
 		System.out.println("Proceso Finalizado");	
 	}
-	public static void readExcelFile(File excelFile){
+	public static List<List<Object>> readExcelFile(File excelFile){
         InputStream excelStream = null;
         try {
+        	List<List<Object>> filas = new ArrayList<List<Object>>();
+        	List<Object> columnas = new ArrayList<Object>();
             excelStream = new FileInputStream(excelFile);
             // High level representation of a workbook.
             // Representación del más alto nivel de la hoja excel.
@@ -248,7 +262,7 @@ public class Main {
             String cellValue;  
             // For this example we'll loop through the rows getting the data we want
             // Para este ejemplo vamos a recorrer las filas obteniendo los datos que queremos            
-            for (int r = 0; r < rows; r++) {
+            for (int r = 0; r <= rows; r++) {
                 Row = sheet.getRow(r);
                 if (Row == null){
                     break;
@@ -267,10 +281,14 @@ public class Main {
                                 (Row.getCell(c).getCellType() == CellType.FORMULA)?"FORMULA":
                                 (Row.getCell(c).getCellType() == CellType.ERROR)?"ERROR":"";                       
                         System.out.print("[Column " + c + ": " + cellValue + "] ");
+                        columnas.add(cellValue);
                     }
+                    filas.add(columnas);
+                    columnas = new ArrayList<Object>();
                     System.out.println();
                 }
-            }            
+            }
+            return filas;
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file not exists (No se encontró el fichero): " + fileNotFoundException);
         } catch (IOException ex) {
@@ -282,6 +300,7 @@ public class Main {
                 System.out.println("Error in file processing after close it (Error al procesar el fichero después de cerrarlo): " + ex);
             }
         }
+    return null;
     }
 		
 }

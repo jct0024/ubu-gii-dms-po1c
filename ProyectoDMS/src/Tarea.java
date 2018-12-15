@@ -32,8 +32,8 @@ public class Tarea {
 		this.descripcion = "Sin descripción";
 		this.coste = coste;
 		this.beneficio = beneficio;
-		this.requisito = requisito;
-		this.asignadoA = asignadoA;
+		this.requisito = null;
+		this.asignadoA = null;
 		this.estado = estado;
 		pb.actualizar();
 		sb.actualizar();
