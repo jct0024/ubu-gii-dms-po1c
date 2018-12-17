@@ -56,7 +56,7 @@ public class AdministradorDeMiembro {
 		Iterator<MiembroDeEquipo> it = miembros.iterator();
 		while(it.hasNext()) {
 			MiembroDeEquipo m = (MiembroDeEquipo)it.next();
-			if (m.getId() == id) {
+			if (m.getId() ==id) {
 				return m;
 				}
 			}
@@ -103,6 +103,10 @@ public class AdministradorDeMiembro {
 				System.out.println("Nombre: " + m.getNombre());
 				System.out.println("--------------------------");
 		}
+	}
+	public void addMiembro(MiembroDeEquipo miembroDeEquipo, String string) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 	}

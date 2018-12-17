@@ -2,31 +2,40 @@ import java.io.BufferedReader;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Row;
 public class Main {
 	/**
+
 	 * El main tendrï¿½ el menu necesarios y los atributos globales, para modificar y navegar por las
 	 * diferentes opciones como se ve en el ejemplo de aï¿½adir y ver miembro.
 	 * Ademï¿½s queda pediente de crear todas las tareas para comprobar cada ejemplo.
 	 * @param args
-	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InvalidFormatException {
 
 		List<List<Object>> Mtareas =readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls"));
 		List<List<Object>> Musuarios =readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls"));
@@ -40,19 +49,32 @@ public class Main {
 		AdministradorDeMiembro am = AdministradorDeMiembro.getAdministrador();
 		for (List<Object> l: Musuarios) {
 			System.out.println(l.get(0));
-			am.addMiembro(new MiembroDeEquipo((Integer)l.get(0),(String)l.get(1)));
+			am.addMiembro(new MiembroDeEquipo((int)l.get(0),(String)l.get(1)));
+		}
+		for (List<Object> l: Mtareas) {
+			System.out.println(l.get(0));
+			at.addTarea(new Tarea((String)l.get(0),(int)l.get(1),(int)l.get(2),(int)l.get(3),(int)l.get(6)));
+			
+			if(0 < (int)l.get(5)) {
+				System.out.println("Pues ha entrado");
+				at.BuscarTarea((int)l.get(1)).setAsignadoA(am.BuscarMiembro((int) l.get(5)));
+			}else {
+				at.BuscarTarea((int)l.get(1)).setAsignadoA(null);
+			}
+			at.BuscarTarea((int)l.get(1)).setDescripcion((String)l.get(7));
 		}
 		/*
-		MiembroDeEquipo M1 = new MiembroDeEquipo(1,"JC");
+		DeEquipo M1 = new MiembroDeEquipo(1,"JC");
 		MiembroDeEquipo M2 = new MiembroDeEquipo(2,"Guille");
 		MiembroDeEquipo M3 = new MiembroDeEquipo(3,"JA");
 		MiembroDeEquipo M4 = new MiembroDeEquipo(4,"Pepa");
-		am.addMiembro(M1);
+		aMiembrom.addMiembro(M1);
 		am.addMiembro(M2);
 		am.addMiembro(M3);
 		am.addMiembro(M4);
 		*/
 		Requisito R = new Requisito();
+		/**
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,3);
 		Tarea b = new Tarea ("Diseñar", 1,  20, 100,2);
 		Tarea c = new Tarea ("Procesar", 2,  20, 100,1);
@@ -61,6 +83,7 @@ public class Main {
 		at.addTarea(c);
 		at.addTarea(d);
 		at.addTarea(b);
+		*/
 		
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -151,7 +174,12 @@ public class Main {
 								+ "3: Terminado ");
 						int est =sc.nextInt();
 						if (est==0) {
+							
 							at.addTarea(new Tarea(nom,id,cost,ben,est));
+							at.getProductBacklog().actualizar();
+						}else {
+							at.addTarea(new Tarea(nom,id,cost,ben,est));
+							at.getSprintBacklog().actualizar();
 						}
 					} else if(flag2 == 2) {	
 						System.out.println("Que tareas deseas mostrar:");
@@ -174,7 +202,9 @@ public class Main {
 								 * Ha modificar para que te muestre solo
 								 * los de estado = 0.
 								 */
-								@SuppressWarnings("unused")
+								for(Tarea pb: at.getProductBacklog().getBacklog()) {
+									System.out.println("Nombre:"+pb.titulo);
+								}
 								String sTexto4 = br.readLine();
 								break;
 							case 2:
@@ -182,6 +212,9 @@ public class Main {
 								 * Ha modificar para que te muestre solo 
 								 * los de estado != 0.
 								 */
+								for(Tarea sb: at.getSprintBacklog().getBacklog()) {
+									System.out.println("Nombre:"+sb.titulo);
+								}
 								@SuppressWarnings("unused")
 								String sTexto0 = br.readLine();
 								break;
@@ -230,7 +263,7 @@ public class Main {
 				}
 			}
 		} 
-
+		GuardarEnExcel();
 		System.out.println("Proceso Finalizado");	
 	}
 	public static List<List<Object>> readExcelFile(File excelFile){
@@ -238,6 +271,7 @@ public class Main {
         try {
         	List<List<Object>> filas = new ArrayList<List<Object>>();
         	List<Object> columnas = new ArrayList<Object>();
+        	List<Double> identificadores = new ArrayList<Double>();
             excelStream = new FileInputStream(excelFile);
             // High level representation of a workbook.
             // Representación del más alto nivel de la hoja excel.
@@ -259,7 +293,8 @@ public class Main {
             int cols = 0;            
             // A string used to store the reading cell
             // Cadena que usamos para almacenar la lectura de la celda
-            String cellValue;  
+            Object cellValue;  
+            Integer id;
             // For this example we'll loop through the rows getting the data we want
             // Para este ejemplo vamos a recorrer las filas obteniendo los datos que queremos            
             for (int r = 0; r <= rows; r++) {
@@ -274,20 +309,28 @@ public class Main {
                                 CELL_TYPE_BLANK, CELL_TYPE_NUMERIC, CELL_TYPE_BLANK, CELL_TYPE_FORMULA, CELL_TYPE_BOOLEAN, CELL_TYPE_ERROR
                         */
                         cellValue = Row.getCell(c) == null?"":
+                        	(Row.getCell(c).getCellType() == CellType.NUMERIC)?"" + Row.getCell(c).getNumericCellValue():
                                 (Row.getCell(c).getCellType() == CellType.STRING)?Row.getCell(c).getStringCellValue():
-                                (Row.getCell(c).getCellType() == CellType.NUMERIC)?"" + Row.getCell(c).getNumericCellValue():
                                 (Row.getCell(c).getCellType() == CellType.BOOLEAN)?"" + Row.getCell(c).getBooleanCellValue():
                                 (Row.getCell(c).getCellType() == CellType.BLANK)?"BLANK":
                                 (Row.getCell(c).getCellType() == CellType.FORMULA)?"FORMULA":
-                                (Row.getCell(c).getCellType() == CellType.ERROR)?"ERROR":"";                       
+                                (Row.getCell(c).getCellType() == CellType.ERROR)?"ERROR":"";
+                        if(Row.getCell(c).getCellType() == CellType.NUMERIC) {
+                        	id = (int) Row.getCell(c).getNumericCellValue();
+                        	columnas.add(id);
+                        }
+                        else {
+                        	columnas.add(cellValue);
+                        }
                         System.out.print("[Column " + c + ": " + cellValue + "] ");
-                        columnas.add(cellValue);
+                        
                     }
                     filas.add(columnas);
                     columnas = new ArrayList<Object>();
                     System.out.println();
                 }
             }
+			workbook.close();
             return filas;
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file not exists (No se encontró el fichero): " + fileNotFoundException);
@@ -302,5 +345,89 @@ public class Main {
         }
     return null;
     }
+	public static void GuardarEnExcel() throws IOException, InvalidFormatException {	
+		AdministradorDeTarea at = AdministradorDeTarea.getAdministrador();
+		AdministradorDeMiembro am = AdministradorDeMiembro.getAdministrador();
+		HashSet<MiembroDeEquipo> usuarios = am.DevolverTareas();
+		HashSet<Tarea> tareas = at.DevolverTareas();
+		String ruta = "C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls";
+		Workbook wb = new HSSFWorkbook();
+		Sheet sheet = wb.createSheet("Hoja1");
+		int fila=0;
+		for(MiembroDeEquipo m : usuarios) {
+			System.out.println(m.nombre);
+			Row row = sheet.createRow(fila);
+			Cell cell= row.createCell(0);
+			cell.setCellValue(m.getId());
+			cell= row.createCell(1);
+			cell.setCellValue(m.getNombre());
+			fila = fila+1;
+		}
+		File file;
+		file=new File(ruta);
+		try(FileOutputStream fileOut = new FileOutputStream(file)){
+			if (file.exists()) {
+				file.delete();
+				System.out.println("Archivo eliminado");
+			}
+			wb.write(fileOut);
+			fileOut.flush();
+			fileOut.close();
+			wb.close();
+			System.out.println("Archivo Creado");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		fila=0;
+		for(Tarea t : tareas) {
+			Row row = sheet.createRow(fila);
+			Cell cell= row.createCell(0);
+			cell.setCellValue(t.getTitulo());
+			
+			cell= row.createCell(1);
+			cell.setCellValue(t.getId());
+			
+			cell= row.createCell(2);
+			cell.setCellValue(t.getCoste());
+			
+			cell= row.createCell(3);
+			cell.setCellValue(t.getBeneficio());
+			
+			cell= row.createCell(4);
+			cell.setCellValue(0);
+			
+			cell= row.createCell(5);
+			if (t.getAsignadoA() != null) {
+				cell.setCellValue(t.getAsignadoA().getId());
+			}else {
+				cell.setCellValue(-1);
+			}
+			cell= row.createCell(6);
+			cell.setCellValue(t.getEstado());
+			cell= row.createCell(7);
+			cell.setCellValue(t.getDescripcion());
+			fila = fila+1;
+		}
+		file=new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls");
+		try(FileOutputStream fileOut = new FileOutputStream(file)){
+			if (file.exists()) {
+				file.delete();
+				System.out.println("Archivo eliminado");
+			}
+			wb.write(fileOut);
+			fileOut.flush();
+			fileOut.close();
+			wb.close();
+			System.out.println("Archivo Creado");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+      
+      
+	}
 		
 }

@@ -2,11 +2,17 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-4.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-4.0.1.jar" sourcepath="C:/Users/Jesus/.m2/repository/org/apache/poi/poi/4.0.1/poi-4.0.1-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-examples-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-excelant-4.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-ooxml-4.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-ooxml-4.0.1.jar" sourcepath="C:/Users/Jesus/.m2/repository/org/apache/poi/poi-ooxml/4.0.1/poi-ooxml-4.0.1-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-ooxml-schemas-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/poi-4.0.1/poi-scratchpad-4.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/xmlbeans-xmlpublic-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/commons-collections4-4.2/commons-collections4-4.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/commons-collections4-4.2/commons-collections4-4.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/commons-collections4-4.2/commons-collections4-4.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/commons-collections4-4.2/commons-collections4-4.2-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesus/OneDrive/Escritorio/commons-collections4-4.2/commons-collections4-4.2-test-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

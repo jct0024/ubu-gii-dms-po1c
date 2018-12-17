@@ -162,7 +162,11 @@ public class AdministradorDeTarea {
 		System.out.println("4.Coste: " + t.getCoste());
 		System.out.println("5.Beneficio: "+t.getBeneficio());
 		System.out.println("6.Descripci�n: "+t.getDescripcion());
-		System.out.println("7.Meimbro al cargo: "+t.getAsignadoA().nombre);
+		if (t.getAsignadoA() == null) {
+			System.out.println("7.Meimbro al cargo: No hay miembro asignado");
+		}else {
+			System.out.println("7.Meimbro al cargo: "+t.getAsignadoA().nombre);
+		}
 		System.out.println("8.Requisito: "+t.getRequisito());
 	}
 	public void modificarTarea() {

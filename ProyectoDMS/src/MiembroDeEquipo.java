@@ -7,14 +7,13 @@ public class MiembroDeEquipo {
 	/**
 	 * Clase ue se dedica a añadir miembros de equipo a la plantilla, para luego asignarles tareas
 	 */
-	//Map<Integer,String> miembros = new HashMap<Integer, String>();
 	int id;
 	String nombre;
 	/**
 	 * constructor
 	 */
-	public MiembroDeEquipo(int id, String nombre) {
-		this.id=id;
+	public MiembroDeEquipo(int d,String nombre) {
+		this.id= d;
 		this.nombre=nombre;
 	}
 	
