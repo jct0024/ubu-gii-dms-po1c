@@ -154,7 +154,6 @@ public class Main {
 						 * los  atributos secundarios
 						 * Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA, int estado)
 						 */
-
 						System.out.println("Añadir Titulo");
 						String nom = sc.next();
 						System.out.println("Añadir Identificador de tarea");
@@ -167,21 +166,21 @@ public class Main {
 						int cost =sc.nextInt();
 						System.out.println("Aï¿½adir Beneficio");
 						int ben =sc.nextInt();
-						System.out.println("Aï¿½adir Estado (NUMERO) "
-								+ "0: Pendiente "
-								+ "1: En proceso "
-								+ "2: Validaciï¿½n "
-								+ "3: Terminado ");
-						int est =sc.nextInt();
-						if (est==0) {
-							
-							at.addTarea(new Tarea(nom,id,cost,ben,est));
-							at.getProductBacklog().actualizar();
-						}else {
-							at.addTarea(new Tarea(nom,id,cost,ben,est));
-							at.getSprintBacklog().actualizar();
-						}
+						//System.out.println("Aï¿½adir Estado (NUMERO) "
+						//		+ "0: Pendiente "
+						//		+ "1: En proceso "
+						///		+ "2: Validaciï¿½n "
+						//		+ "3: Terminado ");
+						//int est =sc.nextInt();
+						//if (est==0) {
+						at.addTarea(new Tarea(nom,id,cost,ben,0));
+						at.getProductBacklog().actualizar();
+						//}else {
+						//	at.addTarea(new Tarea(nom,id,cost,ben,est));
+						//	at.getSprintBacklog().actualizar();
+						//}
 					} else if(flag2 == 2) {	
+						int pregunta=0;
 						System.out.println("Que tareas deseas mostrar:");
 						System.out.println("1: Tareas en Product Backlog");
 						System.out.println("2: Tareas en SprintBacklog");
@@ -204,8 +203,10 @@ public class Main {
 								 */
 								for(Tarea pb: at.getProductBacklog().getBacklog()) {
 									System.out.println("Nombre:"+pb.titulo);
+									System.out.println("ID:"+pb.getId());
+									System.out.println("Estado:"+pb.estado);
+									System.out.println("----------------------------------------");
 								}
-								String sTexto4 = br.readLine();
 								break;
 							case 2:
 								/**
@@ -214,16 +215,35 @@ public class Main {
 								 */
 								for(Tarea sb: at.getSprintBacklog().getBacklog()) {
 									System.out.println("Nombre:"+sb.titulo);
+									System.out.println("ID:"+sb.getId());
+									System.out.println("Estado:"+sb.estado);
+									System.out.println("----------------------------------------");
 								}
-								@SuppressWarnings("unused")
-								String sTexto0 = br.readLine();
 								break;
 							case 3:
 								at.getTarea();
-								@SuppressWarnings("unused")
-								String sTexto1 = br.readLine();
+								
 								break;
 							}
+						System.out.println("¿Que desea hacer?");
+						System.out.println("1/ Mostrar todos los datos de una tarea ");
+						System.out.println("0/ Volver atras");
+						pregunta=sc.nextInt();
+						if(pregunta==1) {
+							boolean bandera = false;
+							while(!bandera) {
+								System.out.println("¿Que tarea desea mostrar?");
+								int idt=sc.nextInt();
+								if(at.existeTarea(idt)) {
+									at.getDatosTarea(at.BuscarTarea(idt));
+									@SuppressWarnings("unused")
+									String sTexto1 = br.readLine();
+									bandera=true;
+								}else {
+									System.out.println("Tarea inexistente, Pruebe otra vez");	
+								}
+							}
+						}
 					} else if (flag2 == 3) {
 						/**
 						 * Para modificar tarea podriamos usar un patron OBSERVADOR, debido a que si cambia el estado de la tarea, 
