@@ -40,23 +40,18 @@ public class Main {
 		List<List<Object>> Mtareas =readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls"));
 		List<List<Object>> Musuarios =readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls"));
 		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
-		System.out.println(Mtareas);
-		System.out.println();
-		System.out.println(Musuarios);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
 		AdministradorDeTarea at = AdministradorDeTarea.getAdministrador();
 		AdministradorDeMiembro am = AdministradorDeMiembro.getAdministrador();
+		AdministradorDeRequisito ar = AdministradorDeRequisito.getAdministrador();
 		for (List<Object> l: Musuarios) {
-			System.out.println(l.get(0));
 			am.addMiembro(new MiembroDeEquipo((int)l.get(0),(String)l.get(1)));
 		}
 		for (List<Object> l: Mtareas) {
-			System.out.println(l.get(0));
 			at.addTarea(new Tarea((String)l.get(0),(int)l.get(1),(int)l.get(2),(int)l.get(3),(int)l.get(6)));
 			
 			if(0 < (int)l.get(5)) {
-				System.out.println("Pues ha entrado");
 				at.BuscarTarea((int)l.get(1)).setAsignadoA(am.BuscarMiembro((int) l.get(5)));
 			}else {
 				at.BuscarTarea((int)l.get(1)).setAsignadoA(null);
@@ -73,7 +68,7 @@ public class Main {
 		am.addMiembro(M3);
 		am.addMiembro(M4);
 		*/
-		Requisito R = new Requisito();
+		
 		/**
 		Tarea a = new Tarea ("Desarrollar", 0,  20, 100,3);
 		Tarea b = new Tarea ("Diseñar", 1,  20, 100,2);
@@ -95,20 +90,29 @@ public class Main {
 		 */
 		while(flag!=0) {
 			
-			System.out.println("Elige una opciï¿½n");
+			System.out.println("Elige la opcion deseada");
 			System.out.println("1: Miembros");
 			System.out.println("2: Tareas");
+			System.out.println("3: Requisitos");
 			System.out.println("0: Salir del programa");
 			flag=sc.nextInt();
+			int pasar=0;
 			int flag2 = -1;
 			if (flag == 1) {
 				while(flag2!=0){
-					System.out.println("Elige una opciï¿½n");
-					System.out.println("1: Aï¿½adir Miembro");
-					System.out.println("2: Lista de Miembros");
-					System.out.println("3: Eliminar Miembro");
-					System.out.println("0: Volver al menu principal");
-					flag2=sc.nextInt();
+					while(pasar!=1) {
+						System.out.println("¿Que desea hacer?");
+						System.out.println("1: Aï¿½adir Miembro");
+						System.out.println("2: Mostrar Lista de Miembros");
+						System.out.println("3: Eliminar Miembro");
+						System.out.println("0: Volver al menu principal");
+						flag2=sc.nextInt();
+						if(flag2<0 || flag2>3) {
+							pasar=0;
+						}else {
+							pasar=1;
+						}
+					}
 					if(flag2==1) {
 						System.out.println("Añadir DNI");
 						int id =sc.nextInt();
@@ -124,7 +128,7 @@ public class Main {
 					} else if (flag2 == 3) {
 						System.out.println("Lista de los miembros existentes:");
 						am.getMiembro();
-						System.out.println("Introduce el Id deel miembro a eliminar");
+						System.out.println("Introduce el Id del miembro a eliminar");
 						int id =sc.nextInt();
 						if(am.existeMiembro(id)) {
 							am.RemoveMiembro(am.BuscarMiembro(id));				
@@ -281,10 +285,60 @@ public class Main {
 						
 					}
 				}
+			}else if(flag==3) {
+				while(flag2!=0){
+					System.out.println("Elige una opciï¿½n");
+					System.out.println("1: Aï¿½adir Requisito");
+					System.out.println("2: Lista de Requisitos");
+					System.out.println("3: Modificar Requisito");
+					System.out.println("5: Eliminar Requisito");
+					System.out.println("0: Volver al menu principal");
+					flag2=sc.nextInt();
+					if(flag2==1) {
+						/**
+						 * Aï¿½adir Tarea, habrï¿½ que elegir,  que estado tiene.
+						 * Hay que hacer una serie de scaners para coger todos atribuos que tiene una tarea
+						 * y mas tarde instanciar un objeto tarea con ests atributos.
+						 * Hay que tener en cuenta que tambien se deberï¿½a poder aï¿½adir una tarea para aï¿½adir 
+						 * los  atributos secundarios
+						 * Tarea (String titulo, int id,  int coste, int beneficio, Requisito requisito, MiembroDeEquipo asignadoA, int estado)
+						 */
+						System.out.println("Añadir Nombre");
+						String nom = sc.next();
+						System.out.println("Añadir Identificador de requisito");
+						int id =sc.nextInt();
+						while(ar.existeRequisito(id)) {
+							System.out.println("Requisito existente, Pruebe otro identificador:");
+							id =sc.nextInt();
+						}
+						System.out.println("Aï¿½adir Descripcion");
+						String descripcion =sc.next();
+						ar.addRequisito(new HistoriaDeUsuario(nom,descripcion, id));
+						int resp=1;
+						while(resp!=0) {
+							System.out.println("Introduce id de tarea que deas añadir");
+							int tareid =sc.nextInt();
+							if (at.existeTarea(tareid)) {
+								ar.BuscarRequisito(id).addTarea(at.BuscarTarea(tareid));
+							}else {
+								System.out.println("Esa tarea no existe introduce otro id");
+								tareid =sc.nextInt();
+							}
+							System.out.println("¿Deseas introducir mas tareas?");
+							System.out.println("1) Si");
+							System.out.println("0) No");
+							resp=sc.nextInt();
+						}
+				
+					} else if(flag2 == 2) {	
+						ar.getRequisitos();
+					}
+					
 			}
 		} 
+		}
 		GuardarEnExcel();
-		System.out.println("Proceso Finalizado");	
+		System.out.println("Proceso Finalizado");
 	}
 	public static List<List<Object>> readExcelFile(File excelFile){
         InputStream excelStream = null;
@@ -322,7 +376,6 @@ public class Main {
                 if (Row == null){
                     break;
                 }else{
-                    System.out.print("Row: " + r + " -> ");
                     for (int c = 0; c < (cols = Row.getLastCellNum()); c++) {
                         /* 
                             We have those cell types (tenemos estos tipos de celda): 
@@ -342,12 +395,10 @@ public class Main {
                         else {
                         	columnas.add(cellValue);
                         }
-                        System.out.print("[Column " + c + ": " + cellValue + "] ");
                         
                     }
                     filas.add(columnas);
                     columnas = new ArrayList<Object>();
-                    System.out.println();
                 }
             }
 			workbook.close();
@@ -375,7 +426,6 @@ public class Main {
 		Sheet sheet = wb.createSheet("Hoja1");
 		int fila=0;
 		for(MiembroDeEquipo m : usuarios) {
-			System.out.println(m.nombre);
 			Row row = sheet.createRow(fila);
 			Cell cell= row.createCell(0);
 			cell.setCellValue(m.getId());
@@ -388,7 +438,6 @@ public class Main {
 		try(FileOutputStream fileOut = new FileOutputStream(file)){
 			if (file.exists()) {
 				file.delete();
-				System.out.println("Archivo eliminado");
 			}
 			wb.write(fileOut);
 			fileOut.flush();
@@ -434,7 +483,6 @@ public class Main {
 		try(FileOutputStream fileOut = new FileOutputStream(file)){
 			if (file.exists()) {
 				file.delete();
-				System.out.println("Archivo eliminado");
 			}
 			wb.write(fileOut);
 			fileOut.flush();
