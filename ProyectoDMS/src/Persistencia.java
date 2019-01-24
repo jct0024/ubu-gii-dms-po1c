@@ -56,7 +56,8 @@ public class Persistencia {
 		HashSet<Tarea> lista = new HashSet<Tarea>();
 		//Buscamos todas las tareas que tengan este requisito, para tener una lista de las tareas que este tiene
 		for(List<Object> t: Mtareas) {
-			if(l.get(0)==t.get(4)) {
+			
+			if((int)l.get(2)==(int)t.get(4)) {
 				lista.add(at.BuscarTarea((int)t.get(1)));
 			}
 		}
@@ -68,14 +69,22 @@ public class Persistencia {
 			}
 			ar.addRequisito(req);
 		}else {
-			HistoriaDeUsuario req = new HistoriaDeUsuario((String) l.get(0), (String)l.get(1),(int)l.get(2));
+			Requisito req = new HistoriaDeUsuario((String) l.get(0), (String)l.get(1),(int)l.get(2));
 			if(!lista.isEmpty()) {
-				req.setHisdeus(lista);
+				req.setRequisitos(lista);
 			}
 			if((int)l.get(3)==1) {
 			req.finalizar();
 			}
 			ar.addRequisito(req);		
+		}
+	}
+	for (List<Object> l: Mtareas) {
+		//Si tiene un requisito (cualquier id maor que cero) le añade el requisito, sino null
+		if(0 < (int)l.get(4)) {
+			at.BuscarTarea((int)l.get(1)).setRequisito(ar.BuscarRequisito((int) l.get(4)));
+		}else {
+			at.BuscarTarea((int)l.get(1)).setRequisito(null);
 		}
 	}
 }
@@ -159,7 +168,7 @@ public class Persistencia {
 		HashSet<MiembroDeEquipo> usuarios = am.DevolverTareas();
 		HashSet<Tarea> tareas = at.DevolverTareas();
 		HashSet<Requisito> requisitos = ar.DevolverRequisitos();
-		String ruta = "C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls";
+		String ruta = "C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls";
 		Workbook wb = new HSSFWorkbook();
 		Sheet sheet = wb.createSheet("Hoja1");
 		int fila=0;
@@ -181,7 +190,6 @@ public class Persistencia {
 			fileOut.flush();
 			fileOut.close();
 			wb.close();
-			System.out.println("Archivo Creado");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}catch (IOException e) {
@@ -221,7 +229,7 @@ public class Persistencia {
 			cell.setCellValue(t.getDescripcion());
 			fila = fila+1;
 		}
-		file=new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls");
+		file=new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls");
 		try(FileOutputStream fileOut = new FileOutputStream(file)){
 			if (file.exists()) {
 				file.delete();
@@ -230,7 +238,6 @@ public class Persistencia {
 			fileOut.flush();
 			fileOut.close();
 			wb.close();
-			System.out.println("Archivo Creado");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}catch (IOException e) {
@@ -263,7 +270,7 @@ public class Persistencia {
 
 			fila = fila+1;
 		}
-		file=new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls");
+		file=new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls");
 		try(FileOutputStream fileOut = new FileOutputStream(file)){
 			if (file.exists()) {
 				file.delete();
@@ -272,7 +279,6 @@ public class Persistencia {
 			fileOut.flush();
 			fileOut.close();
 			wb.close();
-			System.out.println("Archivo Creado");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}catch (IOException e) {

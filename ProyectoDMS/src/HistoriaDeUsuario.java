@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class HistoriaDeUsuario extends Requisito{
 	
-	private HashSet<Tarea> hisdeus= new HashSet<Tarea>();
 	
 	
 	public HistoriaDeUsuario(String nombre, String descripcion,int idrequisito) {
@@ -15,14 +14,6 @@ public class HistoriaDeUsuario extends Requisito{
 	}
 
 
-	public HashSet<Tarea> getHisdeus() {
-		return hisdeus;
-	}
-
-
-	public void setHisdeus(HashSet<Tarea> hisdeus) {
-		this.hisdeus = hisdeus;
-	}
 	
 
 }

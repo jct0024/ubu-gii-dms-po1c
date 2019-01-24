@@ -167,9 +167,14 @@ public class AdministradorDeTarea {
 		if (t.getAsignadoA() == null) {
 			System.out.println("7.Meimbro al cargo: No hay miembro asignado");
 		}else {
-			System.out.println("7.Meimbro al cargo: "+t.getAsignadoA().nombre);
+			System.out.println("7.Miembro al cargo: "+t.getAsignadoA().nombre);
 		}
-		System.out.println("8.Requisito: "+t.getRequisito());
+		if (t.getRequisito() == null) {
+			System.out.println("8.Requisito: No hay requisito asignado");
+		}else {
+			System.out.println("8.Requisito: "+t.getRequisito().getNombre());
+		}
+		
 	}
 	public void modificarTarea() {
 		boolean bandera = false;
@@ -232,6 +237,15 @@ public class AdministradorDeTarea {
 							break;
 						case 8:
 							System.out.println("Nuevo requisito: ");
+							ar.getRequisitos();
+							System.out.println("Escoge un requisito por id");
+							Integer idReq = sc.nextInt();
+							if(ar.existeRequisito(idReq)) {
+								this.BuscarTarea(id).setRequisito(ar.BuscarRequisito(idReq));
+							} else {
+								System.out.println("Error: no existe requisito");
+							}
+							
 							break;
 						}
 					}

@@ -40,6 +40,9 @@ public abstract class Requisito {
 	public HashSet<Tarea> getRequisitos() {
 		return requisitos;
 	}
+	public void setRequisitos(HashSet<Tarea> requisito) {
+		requisitos = requisito;
+	}
 
 	public void addTarea(Tarea tarea) {
 		requisitos.add(tarea);

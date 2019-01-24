@@ -2,14 +2,13 @@ import java.util.HashSet;
 
 public class Defecto extends Requisito {
 	private String cambio;
-	private HashSet<Tarea> defecto= new HashSet<Tarea>();
 	
 	public Defecto(String cambio,String nombre, String descripcion,int idrequisito,HashSet<Tarea> requisitos) {
 		this.cambio=cambio;
 		this.idrequisito=idrequisito;
 		this.nombre=nombre;
 		this.descripcion=descripcion;
-		this.requisitos=new HashSet<Tarea>();
+		this.requisitos=requisitos;
 	}
 	
 	public void setcambio() {

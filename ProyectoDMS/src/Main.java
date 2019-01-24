@@ -1,33 +1,11 @@
 import java.io.BufferedReader;
-
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.CreationHelper;
-import org.apache.poi.ss.usermodel.Row;
+
 public class Main {
 	/**
 
@@ -41,9 +19,9 @@ public class Main {
 
 		Persistencia persistencia = new Persistencia();
 		@SuppressWarnings("static-access")
-		List<List<Object>> Mtareas =persistencia.readExcelFile(new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls"));
-		List<List<Object>> Musuarios =persistencia.readExcelFile(new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls"));
-		List<List<Object>> Mrequisitos =persistencia.readExcelFile(new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls"));
+		List<List<Object>> Mtareas =persistencia.readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls"));
+		List<List<Object>> Musuarios =persistencia.readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls"));
+		List<List<Object>> Mrequisitos =persistencia.readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls"));
 		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
@@ -67,7 +45,7 @@ public class Main {
 		}
 		
 		persistencia.GuardarEnExcel();
-		System.out.println("Proceso Finalizado");
+		System.out.println("Proceso Finalizado, Se ha guardado correctamente");
 	}
 	
 		

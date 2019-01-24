@@ -126,6 +126,7 @@ public class AdministradorDeRequisito {
 		if(this.requisitos.size()>0) {
 		boolean bandera = false;
 		while(!bandera) {
+			this.getRequisitos();
 			System.out.println("Identificador de Requisito a Modificar:");
 			int id =sc.nextInt();
 			if(this.existeRequisito(id)) {
@@ -146,7 +147,11 @@ public class AdministradorDeRequisito {
 						case 2:
 							System.out.println("Nuevo identificador: ");
 							Integer ide =sc.nextInt();
-							this.BuscarRequisito(id).setIdrequisito(ide);
+							if (!this.existeRequisito(ide)) {
+								this.BuscarRequisito(id).setIdrequisito(ide);
+							}else {
+								System.out.println("Ya existe un requisito con ese Identificador. ");
+							}
 							break;
 						case 3:
 							System.out.println("Nueva Descripcion: ");
@@ -159,6 +164,7 @@ public class AdministradorDeRequisito {
 								if (opcion==1) {
 									int pasa = 1;
 									while(pasa==1) {
+										this.BuscarRequisito(id).getRequisitos();
 										System.out.println("Introduce id de tarea a eliminar:  ");
 										int id2 =sc.nextInt();
 										if(this.BuscarRequisito(id).existeTarea(id2)) {
@@ -174,6 +180,7 @@ public class AdministradorDeRequisito {
 								}else if(opcion==2) {
 									int pasa = 1;
 									while(pasa==1) {
+										at.getTarea();
 										System.out.println("Introduce id de tarea que desea añadir:  ");
 										int id2 =sc.nextInt();
 										if(!this.BuscarRequisito(id).existeTarea(id2) && at.existeTarea(id2)) {
