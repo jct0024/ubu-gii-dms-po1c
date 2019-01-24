@@ -159,7 +159,7 @@ public class Persistencia {
 		HashSet<MiembroDeEquipo> usuarios = am.DevolverTareas();
 		HashSet<Tarea> tareas = at.DevolverTareas();
 		HashSet<Requisito> requisitos = ar.DevolverRequisitos();
-		String ruta = "C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls";
+		String ruta = "C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls";
 		Workbook wb = new HSSFWorkbook();
 		Sheet sheet = wb.createSheet("Hoja1");
 		int fila=0;
@@ -221,7 +221,7 @@ public class Persistencia {
 			cell.setCellValue(t.getDescripcion());
 			fila = fila+1;
 		}
-		file=new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls");
+		file=new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls");
 		try(FileOutputStream fileOut = new FileOutputStream(file)){
 			if (file.exists()) {
 				file.delete();
@@ -263,7 +263,7 @@ public class Persistencia {
 
 			fila = fila+1;
 		}
-		file=new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls");
+		file=new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls");
 		try(FileOutputStream fileOut = new FileOutputStream(file)){
 			if (file.exists()) {
 				file.delete();

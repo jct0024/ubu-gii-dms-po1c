@@ -41,9 +41,9 @@ public class Main {
 
 		Persistencia persistencia = new Persistencia();
 		@SuppressWarnings("static-access")
-		List<List<Object>> Mtareas =persistencia.readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls"));
-		List<List<Object>> Musuarios =persistencia.readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls"));
-		List<List<Object>> Mrequisitos =persistencia.readExcelFile(new File("C:\\Users\\Jesus\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls"));
+		List<List<Object>> Mtareas =persistencia.readExcelFile(new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\tareas.xls"));
+		List<List<Object>> Musuarios =persistencia.readExcelFile(new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\miembroDeEquipo.xls"));
+		List<List<Object>> Mrequisitos =persistencia.readExcelFile(new File("C:\\Users\\jotace\\eclipse-workspace\\ubu-gii-dms-po1c\\requisitos.xls"));
 		//Variable que sirve para esperar, a que el usurio pulse enter para continuar con el programa.
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//LLamamos al singlenton
