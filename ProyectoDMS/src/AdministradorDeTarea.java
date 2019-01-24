@@ -15,6 +15,8 @@ public class AdministradorDeTarea {
 	private Scanner sc = new Scanner(System.in);
 	private static Backlog sb;
 	private static Backlog pb;
+	AdministradorDeMiembro am = AdministradorDeMiembro.getAdministrador();
+	AdministradorDeRequisito ar = AdministradorDeRequisito.getAdministrador();
 	/**
 	 * Constructor privado, solo se quiere una instancia de este
 	 */
@@ -223,6 +225,10 @@ public class AdministradorDeTarea {
 							
 						case 7:
 							System.out.println("Nuevo miembro: ");
+							am.getMiembro();
+							System.out.println("Escoge un miembro por id");
+							Integer idMiembro = sc.nextInt();
+							this.BuscarTarea(id).setAsignadoA(am.BuscarMiembro(idMiembro));
 							break;
 						case 8:
 							System.out.println("Nuevo requisito: ");

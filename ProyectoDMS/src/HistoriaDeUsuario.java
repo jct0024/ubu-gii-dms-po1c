@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class HistoriaDeUsuario extends Requisito{
@@ -12,30 +13,16 @@ public class HistoriaDeUsuario extends Requisito{
 		this.descripcion=descripcion;
 		this.requisitos=new HashSet<Tarea>();
 	}
-	
-	
-	private void Sethisdeus(Tarea tarea) {
-		System.out.println("¿Desea: 1) introducir o 2) borrar una Tarea?");
-		Integer opcion = sc.nextInt();
-		if (opcion==1) {
-			hisdeus.add(tarea);
-		}else {
-			if(opcion==2) {
-				hisdeus.add(tarea);
-			}else {
-				System.out.println("Opcion incorreta");
-			}
-		}
-	}
-	
-	private HashSet<Tarea> Gethisdeus(){
+
+
+	public HashSet<Tarea> getHisdeus() {
 		return hisdeus;
 	}
-	
-	
-	
-	
-	
+
+
+	public void setHisdeus(HashSet<Tarea> hisdeus) {
+		this.hisdeus = hisdeus;
+	}
 	
 
 }

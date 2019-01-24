@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public abstract class Requisito {
@@ -7,12 +8,17 @@ public abstract class Requisito {
 	protected String descripcion;
 	protected HashSet<Tarea> requisitos;
 	protected int finalizado=0;
+	Requisito defecto;
 	@SuppressWarnings("resource")
 	protected Scanner sc = new Scanner(System.in);
 	
 	
 	public int getIdrequisito() {
 		return idrequisito;
+	}
+	
+	public void setIdrequisito(int idrequisito) {
+		this.idrequisito=idrequisito;
 	}
 
 	public String getNombre() {
@@ -44,19 +50,32 @@ public abstract class Requisito {
 	}
 
 	public void finalizar() {
-		int finalizado=1;
+		this.finalizado=1;
 		
 	}
+	
+	public  boolean existeTarea(int id) {
+		Iterator<Tarea> it = requisitos.iterator();
+		while(it.hasNext()) {
+			Tarea t = (Tarea)it.next();
+			if (t.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	public Requisito Reabrir() {
 		if (finalizado==1) {
 			//Introducir motivo del cambio
 			System.out.println("¿Cual es el motivo de volver a abrir el requisito?");
 			String motivo = sc.next();
-			Requisito defecto = new Defecto(motivo);
+			this.defecto = new Defecto(motivo,nombre,descripcion,idrequisito,requisitos);
 			return defecto;
 		}else {
-		return null;
+			System.out.println("No se puede abrir un requisito que esta abierto");
+			return null;
 		}	
 	}
 
